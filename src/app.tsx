@@ -1,6 +1,7 @@
 import { Routes, Route, Link } from 'react-router-dom'
 
 import About from './pages/about'
+import Demo from './pages/demo'
 import Home from './pages/home'
 
 export default function App() {
@@ -13,11 +14,15 @@ export default function App() {
         <Link to="/about" className="hover:text-green-400">
           About
         </Link>
+        <Link to="/demo" className="hover:text-green-400">
+          Demo
+        </Link>
       </nav>
 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/demo" element={<Demo />} />
       </Routes>
     </div>
   )

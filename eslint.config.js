@@ -5,6 +5,7 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
 import importPlugin from 'eslint-plugin-import'
+import prettierPlugin from 'eslint-plugin-prettier'
 
 export default defineConfig([
   globalIgnores(['dist']),
@@ -22,8 +23,15 @@ export default defineConfig([
     },
     plugins: {
       import: importPlugin,
+      prettier: prettierPlugin,
     },
     rules: {
+      'react/react-in-jsx-scope': 'off', // Not needed with React 17+
+      'react-refresh/only-export-components': 'warn', // for Vite + React Refresh
+      'prettier/prettier': 'error',
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': 'error',
+      'no-console': ['warn', { allow: ['warn', 'error'] }],
       // Ensure import order
       'import/order': [
         'error',
