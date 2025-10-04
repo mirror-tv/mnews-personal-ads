@@ -42,14 +42,10 @@ export default function OptForm({
             validationType="numeric"
             className="gap-1"
             name="otp"
+            error={error}
+            errorMessage={error}
           />
         </div>
-
-        {error && (
-          <div className="rounded-lg bg-red-50 p-3 text-sm text-red-600">
-            {error}
-          </div>
-        )}
 
         <Button
           type="button"
@@ -69,8 +65,11 @@ export default function OptForm({
             type="button"
             onClick={handleResendOtp}
             disabled={!canResend || isLoading}
-            className="font-sans text-sm leading-normal font-medium disabled:cursor-not-allowed disabled:opacity-50"
-            style={{ color: '#004DBC' }}
+            className={`font-sans text-sm leading-normal font-medium underline transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50 ${
+              canResend && !isLoading
+                ? 'text-gray-500 hover:text-gray-900 focus:text-gray-400'
+                : 'text-gray-500'
+            } `}
           >
             重新發送{canResend ? '' : `(${countdown}s)`}
           </button>

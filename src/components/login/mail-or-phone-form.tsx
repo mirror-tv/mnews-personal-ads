@@ -40,28 +40,22 @@ export default function MailOrPhoneForm({
         {status === 'email' && (
           <div className="flex flex-col gap-1">
             <label
-              htmlFor="email："
+              htmlFor="email"
               className="font-sans text-sm leading-normal font-medium text-gray-900"
             >
               電子信箱
             </label>
-            <div className="relative flex items-center">
-              <Input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="sample@gmail.com"
-                className="flex h-[45px] items-center gap-3 self-stretch rounded-lg bg-gray-100 p-3 pl-10 text-sm leading-normal font-normal placeholder:text-gray-400 focus:border-transparent focus:ring-0 focus:outline-none focus-visible:ring-0"
-              />
-              <img
-                src={mailIcon}
-                alt="mail"
-                width="16"
-                height="16"
-                className="absolute top-1/2 left-3 -translate-y-1/2"
-              />
-            </div>
+            <Input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="sample@gmail.com"
+              className="flex h-[45px] items-center gap-3 self-stretch rounded-lg text-sm leading-normal font-normal placeholder:text-gray-400 focus:ring-0 focus:outline-none focus-visible:ring-0"
+              error={error.includes('電子信箱') ? 'error' : undefined}
+              errorMessage={error.includes('電子信箱') ? error : ''}
+              icon={<img src={mailIcon} alt="mail" width="16" height="16" />}
+            />
           </div>
         )}
 
@@ -73,23 +67,17 @@ export default function MailOrPhoneForm({
             >
               手機號碼
             </label>
-            <div className="relative flex items-center">
-              <Input
-                id="phone"
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder="範例：0922119187"
-                className="flex h-[45px] items-center gap-3 self-stretch rounded-lg bg-gray-100 p-3 pl-10 text-sm leading-normal font-normal placeholder:text-gray-400 focus:border-transparent focus:ring-0 focus:outline-none focus-visible:ring-0"
-              />
-              <img
-                src={phoneIcon}
-                alt="phone"
-                width="16"
-                height="16"
-                className="absolute top-1/2 left-3 -translate-y-1/2"
-              />
-            </div>
+            <Input
+              id="phone"
+              type="tel"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder="範例：0922119187"
+              className="flex h-[45px] items-center gap-3 self-stretch rounded-lg text-sm leading-normal font-normal placeholder:text-gray-400 focus:ring-0 focus:outline-none focus-visible:ring-0"
+              error={error.includes('手機號碼') ? 'error' : undefined}
+              errorMessage={error.includes('手機號碼') ? error : ''}
+              icon={<img src={phoneIcon} alt="phone" width="16" height="16" />}
+            />
           </div>
         )}
 
@@ -109,12 +97,6 @@ export default function MailOrPhoneForm({
             className="inline"
           />
         </p>
-
-        {error && (
-          <div className="rounded-lg bg-red-50 p-3 text-sm text-red-600">
-            {error}
-          </div>
-        )}
 
         <Button
           type="submit"
