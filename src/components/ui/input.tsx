@@ -1,21 +1,61 @@
-import { type ComponentProps } from 'react'
+import { type ComponentProps, forwardRef } from 'react'
 
 import { cn } from '@/lib/utils'
 
-function Input({ className, type, ...props }: ComponentProps<'input'>) {
-  return (
-    <input
-      type={type}
-      data-slot="input"
-      className={cn(
-        'h-9 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none selection:bg-primary selection:text-primary-foreground file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm dark:bg-input/30',
-        'focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50',
-        'aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40',
-        className
-      )}
-      {...props}
-    />
-  )
+type InputProps = ComponentProps<'input'> & {
+  error?: string
+  errorMessage?: string
+  icon?: React.ReactNode
 }
+
+const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type, error, errorMessage, icon, ...props }, ref) => {
+    const inputElement = (
+      <div className="relative">
+        <input
+          type={type}
+          ref={ref}
+          data-slot="input"
+          className={cn(
+            // Base styles
+            'h-9 w-full min-w-0 rounded-md py-1 text-base transition-[color,box-shadow] outline-none',
+            'text-gray-900 placeholder:text-gray-500',
+            'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50',
+            'md:text-sm dark:bg-input/30',
+            // Padding based on icon presence
+            icon ? 'pr-3 pl-10' : 'px-3',
+            // Background - common to all states
+            'bg-gray-100',
+            // Border states
+            !error && [
+              'border-0',
+              'hover:border hover:border-gray-800',
+              'focus:border focus:border-gray-500',
+            ],
+            error && ['border border-red-600', 'focus:border-red-600'],
+            className
+          )}
+          {...props}
+        />
+        {icon && (
+          <div className="absolute top-1/2 left-3 -translate-y-1/2">{icon}</div>
+        )}
+      </div>
+    )
+
+    if (error && errorMessage) {
+      return (
+        <div className="flex flex-col gap-1">
+          {inputElement}
+          <div className="text-sm text-red-500">{errorMessage}</div>
+        </div>
+      )
+    }
+
+    return inputElement
+  }
+)
+
+Input.displayName = 'Input'
 
 export { Input }

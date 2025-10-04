@@ -13,6 +13,8 @@ type RadixInspiredOTPProps = {
   validationType?: 'numeric' | 'alpha' | 'alphanumeric' | 'none'
   className?: string
   name?: string
+  error?: string
+  errorMessage?: string
 }
 
 type OTPInputProps = {
@@ -24,6 +26,7 @@ type OTPInputProps = {
   type?: 'text' | 'password'
   validationType?: 'numeric' | 'alpha' | 'alphanumeric' | 'none'
   maxLength?: number
+  error?: boolean
 }
 
 function OTPInput({
@@ -35,6 +38,7 @@ function OTPInput({
   type,
   validationType,
   maxLength = 1,
+  error,
 }: OTPInputProps) {
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -86,7 +90,11 @@ function OTPInput({
       disabled={disabled}
       readOnly={readOnly}
       inputMode={validationType === 'numeric' ? 'numeric' : 'text'}
-      className={`disabled:cursor-not-allowedDisabled flex h-10 w-10 items-center justify-center gap-3 rounded-lg bg-gray-100 p-2 text-center font-sans text-lg font-medium text-gray-900 transition-all read-only:border-gray-200 read-only:bg-gray-50 focus:border-blue-500 focus:shadow-lg focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:bg-gray-100 disabled:opacity-50`}
+      className={`flex h-10 w-10 items-center justify-center gap-3 rounded-lg p-2 text-center font-sans text-lg font-medium transition-all read-only:border-gray-200 read-only:bg-gray-50 focus:shadow-lg focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100 disabled:opacity-50 ${
+        error
+          ? 'border border-red-600 bg-gray-100 hover:border-red-600 focus:border-red-600'
+          : 'border-0 bg-gray-100 hover:border hover:border-gray-800 focus:border focus:border-gray-500'
+      } text-gray-900`}
       aria-label={`驗證碼第 ${index + 1} 位`}
     />
   )
@@ -114,6 +122,8 @@ export function RadixInspiredOTP({
   validationType = 'numeric',
   className = '',
   name,
+  error,
+  errorMessage,
 }: RadixInspiredOTPProps) {
   const [value, setValue] = useState<string[]>(
     () =>
@@ -195,7 +205,7 @@ export function RadixInspiredOTP({
   //   }
   // }, [value, length, autoSubmit, onAutoSubmit])
 
-  return (
+  const otpContainer = (
     <div
       ref={containerRef}
       role="group"
@@ -213,11 +223,25 @@ export function RadixInspiredOTP({
           readOnly={readOnly}
           type={type}
           validationType={validationType}
+          error={!!error}
         />
       ))}
       <HiddenInput name={name} value={value.join('')} />
     </div>
   )
+
+  // 如果有錯誤訊息，需要包裝容器
+  if (error && errorMessage) {
+    return (
+      <div className="flex flex-col gap-1">
+        {otpContainer}
+        <div className="text-center text-sm text-red-500">{errorMessage}</div>
+      </div>
+    )
+  }
+
+  // 沒有錯誤時直接返回容器，保持布局正確
+  return otpContainer
 }
 
 export default RadixInspiredOTP
