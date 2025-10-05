@@ -18,6 +18,20 @@ const badgeVariants = cva(
           'border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
         outline:
           'text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground',
+        // 狀態相關 variants - 根據設計稿調整
+        'pending-upload': 'border-transparent bg-gray-100 text-gray-700',
+        'material-uploaded': 'border-transparent bg-yellow-50 text-yellow-700',
+        transferred: 'border-transparent bg-gray-500 text-white',
+        'video-production': 'border-transparent bg-yellow-50 text-yellow-700',
+        'pending-confirmation': 'border-transparent bg-pink-50 text-red-500',
+        'modification-requested':
+          'border-transparent bg-yellow-50 text-yellow-700',
+        'pending-modification-quote':
+          'border-transparent bg-pink-50 text-red-500',
+        'pending-broadcast-date': 'border-transparent bg-pink-50 text-red-500',
+        'pending-schedule': 'border-transparent bg-blue-100 text-blue-700',
+        broadcasted: 'border-transparent bg-green-100 text-green-700',
+        cancelled: 'border-transparent bg-gray-500 text-white',
       },
     },
     defaultVariants: {

@@ -3,7 +3,8 @@ import { useState } from 'react'
 import { DialogClose } from '@radix-ui/react-dialog'
 import { format } from 'date-fns'
 
-import { Badge } from '@/components/ui/badge'
+import { StatusFlow } from '@/components/StatusDemo'
+import { Badge, badgeVariants } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 import {
@@ -35,6 +36,7 @@ import {
   TableBody,
   TableCell,
 } from '@/components/ui/table'
+import { ORDER_STATUSES, OrderStatusUtils } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 
 export default function Demo() {
@@ -54,10 +56,10 @@ export default function Demo() {
             <SelectValue placeholder="All Status" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All</SelectItem>
-            <SelectItem value="pending">Pending</SelectItem>
-            <SelectItem value="uploaded">Uploaded</SelectItem>
-            <SelectItem value="done">Done</SelectItem>
+            <SelectItem value="all">全部狀態</SelectItem>
+            <SelectItem value="pending_upload">待上傳素材</SelectItem>
+            <SelectItem value="pending_production">影片製作中</SelectItem>
+            <SelectItem value="available">可瀏覽</SelectItem>
           </SelectContent>
         </Select>
         <Button>Search</Button>
@@ -107,7 +109,9 @@ export default function Demo() {
               <TableCell>#A3F2K9</TableCell>
               <TableCell>Summer Promo</TableCell>
               <TableCell>
-                <Badge variant="secondary">Pending</Badge>
+                <Badge variant="pending-upload">
+                  {OrderStatusUtils.getLabel(ORDER_STATUSES.PENDING_UPLOAD)}
+                </Badge>
               </TableCell>
               <TableCell>
                 <Button variant="outline" size="sm">
@@ -119,7 +123,9 @@ export default function Demo() {
               <TableCell>#B4EBD4</TableCell>
               <TableCell>Winter Fair</TableCell>
               <TableCell>
-                <Badge variant="destructive">Rejected</Badge>
+                <Badge variant="broadcasted">
+                  {OrderStatusUtils.getLabel(ORDER_STATUSES.BROADCASTED)}
+                </Badge>
               </TableCell>
               <TableCell>
                 <Button variant="outline" size="sm">
@@ -129,6 +135,41 @@ export default function Demo() {
             </TableRow>
           </TableBody>
         </Table>
+      </div>
+
+      {/* Status Demo */}
+      <StatusFlow />
+
+      {/* Status Color Preview */}
+      <div className="space-y-4">
+        <h3 className="text-lg font-semibold text-gray-900">狀態顏色預覽</h3>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {OrderStatusUtils.getAllOptions().map(({ value, label }) => {
+            const colors = OrderStatusUtils.getColors(value)
+            const variant = OrderStatusUtils.getBadgeVariant(value)
+            return (
+              <div
+                key={value}
+                className="rounded-lg border border-gray-200 p-3"
+              >
+                <Badge variant={variant as keyof typeof badgeVariants}>
+                  {label}
+                </Badge>
+                <p className="mt-2 text-xs text-gray-600">Variant: {variant}</p>
+                <p className="mt-1 text-xs text-gray-500">
+                  背景: {colors.bg} • 文字: {colors.text}
+                </p>
+              </div>
+            )
+          })}
+          {/* 額外的重複狀態示例 */}
+          <div className="rounded-lg border border-gray-200 p-3">
+            <Badge variant="material-uploaded">素材已上傳 (重複1)</Badge>
+            <p className="mt-2 text-xs text-gray-600">
+              Variant: material-uploaded
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Dialog */}
