@@ -243,6 +243,179 @@
 
 /* Map to shadcn / Tailwind CSS variables using @theme inline */
 @theme inline {
+  /* ─────────────── Base colors ─────────────── */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* ─────────────── Gray 1–10 ─────────────── */
+  --color-gray-1: var(--color-gray-1);
+  --color-gray-2: var(--color-gray-2);
+  --color-gray-3: var(--color-gray-3);
+  --color-gray-4: var(--color-gray-4);
+  --color-gray-5: var(--color-gray-5);
+  --color-gray-6: var(--color-gray-6);
+  --color-gray-7: var(--color-gray-7);
+  --color-gray-8: var(--color-gray-8);
+  --color-gray-9: var(--color-gray-9);
+  --color-gray-10: var(--color-gray-10);
+
+  /* ─────────────── Red 1–10 ─────────────── */
+  --color-red-1: var(--color-red-1);
+  --color-red-2: var(--color-red-2);
+  --color-red-3: var(--color-red-3);
+  --color-red-4: var(--color-red-4);
+  --color-red-5: var(--color-red-5);
+  --color-red-6: var(--color-red-6);
+  --color-red-7: var(--color-red-7);
+  --color-red-8: var(--color-red-8);
+  --color-red-9: var(--color-red-9);
+  --color-red-10: var(--color-red-10);
+
+  /* ─────────────── Blue 1–10 ─────────────── */
+  --color-blue-1: var(--color-blue-1);
+  --color-blue-2: var(--color-blue-2);
+  --color-blue-3: var(--color-blue-3);
+  --color-blue-4: var(--color-blue-4);
+  --color-blue-5: var(--color-blue-5);
+  --color-blue-6: var(--color-blue-6);
+  --color-blue-7: var(--color-blue-7);
+  --color-blue-8: var(--color-blue-8);
+  --color-blue-9: var(--color-blue-9);
+  --color-blue-10: var(--color-blue-10);
+
+  /* ─────────────── Green 1–10 ─────────────── */
+  --color-green-1: var(--color-green-1);
+  --color-green-2: var(--color-green-2);
+  --color-green-3: var(--color-green-3);
+  --color-green-4: var(--color-green-4);
+  --color-green-5: var(--color-green-5);
+  --color-green-6: var(--color-green-6);
+  --color-green-7: var(--color-green-7);
+  --color-green-8: var(--color-green-8);
+  --color-green-9: var(--color-green-9);
+  --color-green-10: var(--color-green-10);
+
+  /* ─────────────── Yellow 1–10 ─────────────── */
+  --color-yellow-1: var(--color-yellow-1);
+  --color-yellow-2: var(--color-yellow-2);
+  --color-yellow-3: var(--color-yellow-3);
+  --color-yellow-4: var(--color-yellow-4);
+  --color-yellow-5: var(--color-yellow-5);
+  --color-yellow-6: var(--color-yellow-6);
+  --color-yellow-7: var(--color-yellow-7);
+  --color-yellow-8: var(--color-yellow-8);
+  --color-yellow-9: var(--color-yellow-9);
+  --color-yellow-10: var(--color-yellow-10);
+
+  /* ─────────────── Brand / semantic ─────────────── */
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-focus: var(--brand-focus);
+
+  /* ─────────────── Semantic aliases ─────────────── */
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-tertiary: var(--color-text-tertiary);
+  --color-text-disabled: var(--color-text-disabled);
+
+  --color-fill-primary: var(--color-fill-primary);
+  --color-fill-secondary: var(--color-fill-secondary);
+  --color-fill-light: var(--color-fill-light);
+
+  --color-border-default: var(--color-border-default);
+  --color-border-secondary: var(--color-border-secondary);
+  --color-border-focus: var(--color-border-focus);
+
+  --color-surface-primary: var(--color-surface-primary);
+  --color-surface-secondary: var(--color-surface-secondary);
+  --color-surface-tertiary: var(--color-surface-tertiary);
+
+  --color-mask: var(--color-mask);
+
+  /* ─────────────── Spacing ─────────────── */
+  --spacing-xs: var(--spacing-xs);
+  --spacing-s: var(--spacing-s);
+  --spacing-m: var(--spacing-m);
+  --spacing-l: var(--spacing-l);
+  --spacing-xl: var(--spacing-xl);
+  --spacing-2xl: var(--spacing-2xl);
+  --spacing-3xl: var(--spacing-3xl);
+  --spacing-4xl: var(--spacing-4xl);
+  --spacing-5xl: var(--spacing-5xl);
+  --spacing-6xl: var(--spacing-6xl);
+
+  /* ─────────────── Radius ─────────────── */
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+
+  /* ─────────────── Typography ─────────────── */
+  --font-h1-size: var(--font-h1-size);
+  --font-h1-line-height: var(--font-h1-line-height);
+  --font-h2-size: var(--font-h2-size);
+  --font-h2-line-height: var(--font-h2-line-height);
+  --font-h3-size: var(--font-h3-size);
+  --font-h3-line-height: var(--font-h3-line-height);
+  --font-h4-size: var(--font-h4-size);
+  --font-h4-line-height: var(--font-h4-line-height);
+  --font-h5-size: var(--font-h5-size);
+  --font-h5-line-height: var(--font-h5-line-height);
+  --font-h6-size: var(--font-h6-size);
+  --font-h6-line-height: var(--font-h6-line-height);
+  --font-body1-size: var(--font-body1-size);
+  --font-body1-line-height: var(--font-body1-line-height);
+  --font-body2-size: var(--font-body2-size);
+  --font-body2-line-height: var(--font-body2-line-height);
+  --font-caption1-size: var(--font-caption1-size);
+  --font-caption1-line-height: var(--font-caption1-line-height);
+  --font-caption2-size: var(--font-caption2-size);
+  --font-caption2-line-height: var(--font-caption2-line-height);
+
+  /* ─────────────── Breakpoints ─────────────── */
+  --screen-sm: var(--screen-sm);
+  --screen-md: var(--screen-md);
+  --screen-lg: var(--screen-lg);
+  --screen-xl: var(--screen-xl);
+  --screen-xxl: var(--screen-xxl);
+  --screen-tablet: var(--screen-tablet);
+  --screen-desktop: var(--screen-desktop);
+
+  /* ─────────────── UI structural tokens (shadcn) ─────────────── */
+  --radius: var(--radius);
+  --card: var(--card);
+  --card-foreground: var(--card-foreground);
+  --popover: var(--popover);
+  --popover-foreground: var(--popover-foreground);
+  --primary: var(--primary);
+  --primary-foreground: var(--primary-foreground);
+  --secondary: var(--secondary);
+  --secondary-foreground: var(--secondary-foreground);
+  --muted: var(--muted);
+  --muted-foreground: var(--muted-foreground);
+  --accent: var(--accent);
+  --accent-foreground: var(--accent-foreground);
+  --destructive: var(--destructive);
+  --border: var(--border);
+  --input: var(--input);
+  --ring: var(--ring);
+
+  /* ─────────────── Chart / Sidebar ─────────────── */
+  --chart-1: var(--chart-1);
+  --chart-2: var(--chart-2);
+  --chart-3: var(--chart-3);
+  --chart-4: var(--chart-4);
+  --chart-5: var(--chart-5);
+  --sidebar: var(--sidebar);
+  --sidebar-foreground: var(--sidebar-foreground);
+  --sidebar-primary: var(--sidebar-primary);
+  --sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --sidebar-accent: var(--sidebar-accent);
+  --sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --sidebar-border: var(--sidebar-border);
+  --sidebar-ring: var(--sidebar-ring);
+
   /* Base colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
