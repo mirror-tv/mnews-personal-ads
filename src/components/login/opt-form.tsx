@@ -13,6 +13,8 @@ type OptFormProps = {
 }
 
 export default function OptForm({
+  email,
+  phone,
   error,
   isLoading,
   countdown,
@@ -25,8 +27,10 @@ export default function OptForm({
       <h3 className="text-center font-sans text-xl leading-normal font-medium text-text-primary">
         輸入驗證碼
       </h3>
-      <p className="text-center font-sans text-sm leading-normal font-normal text-text-secondary">
-        請輸入電子信箱／手機號碼收到的六位數驗證碼
+      <p className="truncate text-center font-sans text-sm leading-normal font-normal text-text-secondary">
+        驗證碼已發送到 {email || phone}
+        <br />
+        請輸入您收到的六位數驗證碼
       </p>
 
       <div className="mt-4 flex w-full flex-col gap-4">
@@ -67,7 +71,7 @@ export default function OptForm({
             variant="link"
             onClick={handleResendOtp}
             disabled={!canResend || isLoading}
-            className={`transition-colors duration-200 ${
+            className={`h-auto p-0 underline transition-colors duration-200 ${
               canResend && !isLoading
                 ? 'text-text-secondary hover:text-text-primary focus:text-text-tertiary'
                 : 'text-text-secondary'
