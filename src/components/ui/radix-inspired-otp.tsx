@@ -1,4 +1,10 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react'
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  useLayoutEffect,
+  useCallback,
+} from 'react'
 
 type RadixInspiredOTPProps = {
   length?: number
@@ -132,6 +138,8 @@ export function RadixInspiredOTP({
       new Array(length).fill('')
   )
 
+  const [pastedLength, setPastedLength] = useState<number>(0)
+
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -139,6 +147,17 @@ export function RadixInspiredOTP({
       setValue(controlledValue.split(''))
     }
   }, [controlledValue])
+
+  // Handle focus after paste operation
+  useLayoutEffect(() => {
+    if (containerRef.current && pastedLength > 0) {
+      const lastInput = containerRef.current.children[
+        pastedLength - 1
+      ] as HTMLInputElement
+      lastInput?.focus()
+      setPastedLength(0)
+    }
+  }, [pastedLength])
 
   const handleValueChange = useCallback(
     (newValue: string[]) => {
@@ -183,14 +202,8 @@ export function RadixInspiredOTP({
       newValue[i] = cleanData[i]
     }
 
+    setPastedLength(cleanData.length)
     handleValueChange(newValue)
-
-    setTimeout(() => {
-      const lastInput = containerRef.current?.children[
-        cleanData.length - 1
-      ] as HTMLInputElement
-      lastInput?.focus()
-    }, 0)
   }
 
   // Auto-submit functionality disabled per user request
