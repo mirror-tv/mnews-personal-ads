@@ -41,8 +41,8 @@ export default function Demo() {
   const [date, setDate] = useState<Date | undefined>(new Date())
 
   return (
-    <div className="bg-surface-secondary min-h-screen space-y-8 p-8">
-      <h1 className="text-h2 text-text-primary font-bold">
+    <div className="min-h-screen space-y-8 bg-surface-secondary p-8">
+      <h1 className="text-h2 font-bold text-text-primary">
         Shadcn UI Showcase
       </h1>
 
@@ -65,7 +65,7 @@ export default function Demo() {
 
       {/* DatePicker (Popover + Calendar) */}
       <div>
-        <h2 className="text-h3 text-text-primary mb-2">Pick a Date</h2>
+        <h2 className="text-h3 mb-2 text-text-primary">Pick a Date</h2>
         <Popover>
           <PopoverTrigger asChild>
             <Button
@@ -92,7 +92,7 @@ export default function Demo() {
 
       {/* Table with Badges */}
       <div>
-        <h2 className="text-h3 text-text-primary mb-2">Order Records</h2>
+        <h2 className="text-h3 mb-2 text-text-primary">Order Records</h2>
         <Table>
           <TableHeader>
             <TableRow>
@@ -110,7 +110,9 @@ export default function Demo() {
                 <Badge variant="secondary">Pending</Badge>
               </TableCell>
               <TableCell>
-                <Button size="sm">View</Button>
+                <Button variant="outline" size="sm">
+                  View
+                </Button>
               </TableCell>
             </TableRow>
             <TableRow>
@@ -120,7 +122,9 @@ export default function Demo() {
                 <Badge variant="destructive">Rejected</Badge>
               </TableCell>
               <TableCell>
-                <Button size="sm">View</Button>
+                <Button variant="outline" size="sm">
+                  View
+                </Button>
               </TableCell>
             </TableRow>
           </TableBody>
@@ -139,14 +143,14 @@ export default function Demo() {
                 Confirm Upload
               </DialogTitle>
             </DialogHeader>
-            <p className="text-text-secondary text-sm">
+            <p className="text-sm text-text-secondary">
               Please confirm your order details before uploading.
             </p>
             <DialogFooter className="flex space-x-2">
               <DialogClose asChild>
                 <Button variant="secondary">Cancel</Button>
               </DialogClose>
-              <Button>Confirm Upload</Button>
+              <Button variant="blue">Confirm Upload</Button>
             </DialogFooter>
           </DialogContent>
         </Dialog>
