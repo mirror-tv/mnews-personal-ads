@@ -14,7 +14,7 @@ A React + Vite based internal admin project with TypeScript, Tailwind CSS, ESLin
 
 ## Requirements
 
-- **Node.js**: `20.20.0` (installed locally during development)  
+- **Node.js**: `22.20.0` (installed locally during development)  
   - Recommended: Node.js LTS (20.x or 22.x)  
 - **Package manager**: [pnpm](https://pnpm.io/) v9+
 
