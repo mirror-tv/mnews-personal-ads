@@ -27,8 +27,11 @@ export default function OptForm({
       <h3 className="text-center font-sans text-xl leading-normal font-medium text-text-primary">
         輸入驗證碼
       </h3>
-      <p className="truncate text-center font-sans text-sm leading-normal font-normal text-text-secondary">
-        驗證碼已發送到 {email || phone}
+      <p className="text-center font-sans text-sm leading-normal font-normal text-text-secondary">
+        驗證碼已發送到{' '}
+        <span className="inline-block max-w-full truncate">
+          {email || phone}
+        </span>
         <br />
         請輸入您收到的六位數驗證碼
       </p>
