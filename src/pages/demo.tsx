@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { DialogClose } from '@radix-ui/react-dialog'
 import { format } from 'date-fns'
 
-import { StatusFlow } from '@/components/StatusDemo'
 import { Badge, badgeVariants } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
@@ -136,9 +135,6 @@ export default function Demo() {
           </TableBody>
         </Table>
       </div>
-
-      {/* Status Demo */}
-      <StatusFlow />
 
       {/* Status Color Preview */}
       <div className="space-y-4">

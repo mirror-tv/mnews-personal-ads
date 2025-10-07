@@ -40,28 +40,28 @@ export default function List() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <header className="bg-white px-5 py-4 shadow-sm md:px-15">
-        <div className="m-auto flex max-w-3xl items-center gap-5">
+    <div className="min-h-screen bg-surface-secondary">
+      <header className="bg-surface-primary px-5 py-4 shadow-sm md:px-15">
+        <div className="m-auto flex items-center gap-5">
           <button
             onClick={handleBack}
-            className="mr-3 flex h-8 w-8 items-center justify-center bg-transparent transition-colors duration-200 hover:text-gray-500 focus:text-gray-400 focus:outline-none"
+            className="mr-3 flex h-8 w-8 items-center justify-center bg-transparent transition-colors duration-200 hover:text-text-secondary focus:text-text-tertiary focus:outline-none"
           >
             <ArrowBackIcon className="h-5 w-5" />
           </button>
-          <p className="text-base font-medium text-gray-900 md:text-xl">
+          <p className="text-base font-medium text-text-primary md:text-xl">
             訂單紀錄
           </p>
         </div>
       </header>
 
       <main className="px-4 py-6">
-        <div className="mx-auto mb-6 flex max-w-3xl flex-col items-start gap-6 rounded-xl border border-gray-200 bg-white p-6">
-          <h2 className="text-lg font-medium text-gray-900">搜尋與篩選</h2>
+        <div className="mx-auto mb-6 flex flex-col items-start gap-6 rounded-xl border border-border-default bg-surface-primary p-6">
+          <h2 className="text-lg font-medium text-text-primary">搜尋與篩選</h2>
 
           <div className="flex w-full flex-col gap-4 md:flex-row">
             <div className="flex-1">
-              <label className="mb-2 block text-sm font-medium text-gray-700">
+              <label className="mb-2 block text-sm font-medium text-text-primary">
                 搜尋關鍵字
               </label>
               <Input
@@ -84,15 +84,15 @@ export default function List() {
                     />
                   </svg>
                 }
-                className="w-full rounded-lg border-gray-200 bg-gray-50 py-3 text-sm placeholder-gray-500 focus:border-transparent focus:ring-0 focus:outline-none focus-visible:ring-0"
+                className="w-full rounded-lg border-border-default bg-surface-tertiary py-3 text-sm placeholder-text-tertiary focus:border-transparent focus:ring-0 focus:outline-none focus-visible:ring-0"
               />
             </div>
             <div className="w-full flex-1">
-              <label className="mb-2 block text-sm font-medium text-gray-700">
+              <label className="mb-2 block text-sm font-medium text-text-primary">
                 訂單狀態
               </label>
               <Select value={orderStatus} onValueChange={setOrderStatus}>
-                <SelectTrigger className="w-full rounded-lg border-gray-200 bg-gray-50 py-3 text-sm focus:border-transparent focus:ring-0 focus:outline-none focus-visible:ring-0">
+                <SelectTrigger className="w-full rounded-lg border-border-default bg-surface-tertiary py-3 text-sm focus:border-transparent focus:ring-0 focus:outline-none focus-visible:ring-0">
                   <SelectValue placeholder="選擇狀態" />
                 </SelectTrigger>
                 <SelectContent>
@@ -107,15 +107,15 @@ export default function List() {
           </div>
         </div>
 
-        <div className="mx-auto mb-6 flex max-w-3xl flex-col items-start gap-6 rounded-xl border border-gray-200 bg-white p-6">
-          <h4 className="text-lg font-medium text-gray-900">
+        <div className="mx-auto mb-6 flex flex-col items-start gap-6 rounded-xl border border-border-default bg-surface-primary p-6">
+          <h4 className="text-lg font-medium text-text-primary">
             訂單列表 ({filteredOrders.length}筆記錄)
           </h4>
 
           {!filteredOrders.length ? (
             <div className="py-12 text-center">
               <svg
-                className="mx-auto h-12 w-12 text-gray-400"
+                className="mx-auto h-12 w-12 text-text-tertiary"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -127,62 +127,62 @@ export default function List() {
                   d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                 />
               </svg>
-              <h4 className="mt-4 text-sm font-medium text-gray-900">
+              <h4 className="mt-4 text-sm font-medium text-text-primary">
                 暫無訂單資料
               </h4>
-              <p className="mt-2 text-sm text-gray-500">
+              <p className="mt-2 text-sm text-text-secondary">
                 搜尋條件：{searchKeyword ? `"${searchKeyword}"` : '無關鍵字'}
                 {orderStatus !== 'all' &&
                   ` • ${OrderStatusUtils.getLabel(orderStatus as OrderStatus)}`}
               </p>
             </div>
           ) : (
-            <div className="w-full overflow-x-auto overflow-x-scroll">
-              <table className="min-w-full divide-y divide-gray-200">
+            <div className="w-full overflow-x-scroll">
+              <table className="min-w-full divide-y divide-border-default">
                 <thead>
                   <tr>
-                    <th className="px-2 py-2 text-left text-sm tracking-wide text-gray-800 uppercase">
+                    <th className="p-2 text-left text-sm tracking-wide text-text-primary uppercase">
                       訂單編號
                     </th>
-                    <th className="px-2 py-2 text-left text-sm tracking-wide text-gray-800 uppercase">
+                    <th className="p-2 text-left text-sm tracking-wide text-text-primary uppercase">
                       商品名稱
                     </th>
-                    <th className="px-2 py-2 text-left text-sm tracking-wide text-gray-800 uppercase">
+                    <th className="p-2 text-left text-sm tracking-wide text-text-primary uppercase">
                       排播日期
                     </th>
-                    <th className="px-2 py-2 text-left text-sm tracking-wide text-gray-800 uppercase">
+                    <th className="p-2 text-left text-sm tracking-wide text-text-primary uppercase">
                       狀態
                     </th>
-                    <th className="px-2 py-2 text-left text-sm tracking-wide text-gray-800 uppercase">
+                    <th className="p-2 text-left text-sm tracking-wide text-text-primary uppercase">
                       最後更新
                     </th>
-                    <th className="px-2 py-2 text-left text-sm tracking-wide text-gray-800 uppercase">
+                    <th className="p-2 text-left text-sm tracking-wide text-text-primary uppercase">
                       操作
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200 bg-white">
+                <tbody className="divide-y divide-border-default bg-surface-primary">
                   {filteredOrders.map((order) => (
-                    <tr key={order.id} className="hover:bg-gray-50">
-                      <td className="px-2 py-3 text-sm whitespace-nowrap text-gray-900">
+                    <tr key={order.id} className="hover:bg-surface-secondary">
+                      <td className="px-2 py-3 text-sm whitespace-nowrap text-text-primary">
                         {order.orderNumber}
                       </td>
-                      <td className="px-2 py-3 text-sm whitespace-nowrap text-gray-900">
+                      <td className="px-2 py-3 text-sm whitespace-nowrap text-text-primary">
                         {order.productName}
                       </td>
-                      <td className="px-2 py-3 text-sm whitespace-nowrap text-gray-900">
+                      <td className="px-2 py-3 text-sm whitespace-nowrap text-text-primary">
                         {order.broadcastDate}
                       </td>
                       <td className="px-2 py-3 whitespace-nowrap">
                         <StatusBadge status={order.status} />
                       </td>
-                      <td className="px-2 py-3 text-sm whitespace-nowrap text-gray-900">
+                      <td className="px-2 py-3 text-sm whitespace-nowrap text-text-primary">
                         {order.lastUpdated}
                       </td>
-                      <td className="px-2 py-3 text-sm whitespace-nowrap text-gray-900">
+                      <td className="px-2 py-3 text-sm whitespace-nowrap text-text-primary">
                         <Button
                           onClick={() => handleViewOrder(order.id)}
-                          className="flex h-8 w-12 w-auto items-center justify-center gap-1 rounded-[6px] border border-blue-600 bg-white px-3 text-sm font-medium text-blue-600 hover:bg-blue-700 hover:text-white focus:outline-none"
+                          className="flex h-8 w-12 w-auto items-center justify-center gap-1 rounded-[6px] border border-blue-6 bg-surface-primary px-3 text-sm font-medium text-blue-6 hover:bg-blue-6 hover:text-white focus:outline-none"
                         >
                           <DetailIcon className="h-4 w-4" />
                           查看
