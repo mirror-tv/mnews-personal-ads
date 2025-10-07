@@ -22,10 +22,10 @@ export default function OptForm({
 }: OptFormProps) {
   return (
     <>
-      <h3 className="text-center font-sans text-xl leading-normal font-medium text-gray-900">
+      <h3 className="text-center font-sans text-xl leading-normal font-medium text-text-primary">
         輸入驗證碼
       </h3>
-      <p className="text-center font-sans text-sm leading-normal font-normal text-gray-500">
+      <p className="text-center font-sans text-sm leading-normal font-normal text-text-secondary">
         請輸入電子信箱／手機號碼收到的六位數驗證碼
       </p>
 
@@ -33,7 +33,7 @@ export default function OptForm({
         <div className="flex flex-col gap-1">
           <label
             htmlFor="otp"
-            className="font-sans text-sm leading-normal font-medium text-gray-900"
+            className="font-sans text-sm leading-normal font-medium text-text-primary"
           >
             驗證碼
           </label>
@@ -51,28 +51,30 @@ export default function OptForm({
           type="button"
           onClick={() => handleOtpSubmit()}
           disabled={isLoading}
-          style={{ backgroundColor: '#004DBC' }}
-          className="h-10 w-full rounded-lg px-2 py-2 font-sans text-base leading-normal font-medium text-white focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          variant="blue"
+          size="lg"
+          className="w-full"
         >
           {isLoading ? '驗證中...' : '登入'}
         </Button>
 
         <div className="flex items-center justify-center text-sm">
-          <span className="font-sans text-sm leading-normal font-medium text-gray-500">
+          <span className="font-sans text-sm leading-normal font-medium text-text-secondary">
             沒收到驗證碼？
           </span>
-          <button
+          <Button
             type="button"
+            variant="link"
             onClick={handleResendOtp}
             disabled={!canResend || isLoading}
-            className={`font-sans text-sm leading-normal font-medium underline transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50 ${
+            className={`transition-colors duration-200 ${
               canResend && !isLoading
-                ? 'text-gray-500 hover:text-gray-900 focus:text-gray-400'
-                : 'text-gray-500'
-            } `}
+                ? 'text-text-secondary hover:text-text-primary focus:text-text-tertiary'
+                : 'text-text-secondary'
+            }`}
           >
             重新發送{canResend ? '' : `(${countdown}s)`}
-          </button>
+          </Button>
         </div>
       </div>
     </>

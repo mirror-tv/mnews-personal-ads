@@ -29,10 +29,10 @@ export default function MailOrPhoneForm({
 }: MailOrPhoneFormProps) {
   return (
     <>
-      <h3 className="text-center font-sans text-xl leading-normal font-medium text-gray-900">
+      <h3 className="text-center font-sans text-xl leading-normal font-medium text-text-primary">
         鏡新聞個人廣告系統
       </h3>
-      <p className="text-center font-sans text-sm leading-normal font-normal text-gray-500">
+      <p className="text-center font-sans text-sm leading-normal font-normal text-text-secondary">
         請輸入您註冊應援科技使用的電子信箱／手機號碼
       </p>
 
@@ -41,7 +41,7 @@ export default function MailOrPhoneForm({
           <div className="flex flex-col gap-1">
             <label
               htmlFor="email"
-              className="font-sans text-sm leading-normal font-medium text-gray-900"
+              className="font-sans text-sm leading-normal font-medium text-text-primary"
             >
               電子信箱
             </label>
@@ -51,7 +51,7 @@ export default function MailOrPhoneForm({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="sample@gmail.com"
-              className="flex h-[45px] items-center gap-3 self-stretch rounded-lg text-sm leading-normal font-normal placeholder:text-gray-400 focus:ring-0 focus:outline-none focus-visible:ring-0"
+              className="h-[45px] rounded-lg"
               error={error.includes('電子信箱') ? 'error' : undefined}
               errorMessage={error.includes('電子信箱') ? error : ''}
               icon={<img src={mailIcon} alt="mail" width="16" height="16" />}
@@ -63,7 +63,7 @@ export default function MailOrPhoneForm({
           <div className="flex flex-col gap-1">
             <label
               htmlFor="phone"
-              className="font-sans text-sm leading-normal font-medium text-gray-900"
+              className="font-sans text-sm leading-normal font-medium text-text-primary"
             >
               手機號碼
             </label>
@@ -73,7 +73,7 @@ export default function MailOrPhoneForm({
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="範例：0922119187"
-              className="flex h-[45px] items-center gap-3 self-stretch rounded-lg text-sm leading-normal font-normal placeholder:text-gray-400 focus:ring-0 focus:outline-none focus-visible:ring-0"
+              className="rounded-lg"
               error={error.includes('手機號碼') ? 'error' : undefined}
               errorMessage={error.includes('手機號碼') ? error : ''}
               icon={<img src={phoneIcon} alt="phone" width="16" height="16" />}
@@ -85,8 +85,7 @@ export default function MailOrPhoneForm({
           onClick={() =>
             setStatus((prev) => (prev === 'email' ? 'phone' : 'email'))
           }
-          className="flex cursor-pointer items-center text-sm leading-normal font-medium"
-          style={{ color: '#004DBC' }}
+          className="flex cursor-pointer items-center text-sm leading-normal font-medium text-brand-primary hover:cursor-pointer"
         >
           使用{status === 'email' ? '手機號碼' : '電子信箱'}登入
           <img
@@ -101,8 +100,9 @@ export default function MailOrPhoneForm({
         <Button
           type="submit"
           disabled={isLoading}
-          style={{ backgroundColor: '#004DBC' }}
-          className="h-10 w-full rounded-lg px-2 py-2 text-base leading-normal font-medium text-white focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          variant="blue"
+          size="lg"
+          className="w-full"
         >
           {isLoading ? '發送中...' : '發送驗證碼'}
         </Button>

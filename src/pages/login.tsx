@@ -125,8 +125,8 @@ export default function Login() {
         </a>
       </header>
 
-      <section className="flex h-[calc(100vh-64px)] justify-center bg-gray-50">
-        <div className="mx-4 mt-8 flex h-fit max-w-[288px] flex-col items-center rounded-xl border border-gray-300 bg-white p-4 shadow-lg md:max-w-[448px] md:p-6">
+      <section className="flex h-[calc(100vh-64px)] justify-center bg-surface-secondary">
+        <div className="mx-4 mt-8 flex h-fit max-w-[288px] flex-col items-center rounded-xl border border-border-default bg-surface-primary p-4 shadow-lg md:max-w-[448px] md:p-6">
           {status !== 'OPT' && (
             <MailOrPhoneForm
               status={status}

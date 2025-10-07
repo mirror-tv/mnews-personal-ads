@@ -90,11 +90,11 @@ function OTPInput({
       disabled={disabled}
       readOnly={readOnly}
       inputMode={validationType === 'numeric' ? 'numeric' : 'text'}
-      className={`flex h-10 w-10 items-center justify-center gap-3 rounded-lg p-2 text-center font-sans text-lg font-medium transition-all read-only:border-gray-200 read-only:bg-gray-50 focus:shadow-lg focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-100 disabled:opacity-50 ${
+      className={`flex h-10 w-10 items-center justify-center gap-3 rounded-lg p-2 text-center font-sans text-lg font-medium transition-all read-only:border-border-secondary read-only:bg-surface-tertiary focus:shadow-lg focus:outline-none disabled:cursor-not-allowed disabled:bg-surface-tertiary disabled:opacity-50 ${
         error
-          ? 'border border-red-600 bg-gray-100 hover:border-red-600 focus:border-red-600'
-          : 'border-0 bg-gray-100 hover:border hover:border-gray-800 focus:border focus:border-gray-500'
-      } text-gray-900`}
+          ? 'border border-red-6 bg-surface-tertiary hover:border-red-6 focus:border-red-6'
+          : 'border-0 bg-surface-tertiary hover:border hover:border-text-primary focus:border focus:border-text-secondary'
+      } text-text-primary`}
       aria-label={`驗證碼第 ${index + 1} 位`}
     />
   )
@@ -235,7 +235,7 @@ export function RadixInspiredOTP({
     return (
       <div className="flex flex-col gap-1">
         {otpContainer}
-        <div className="text-center text-sm text-red-500">{errorMessage}</div>
+        <div className="text-center text-sm text-red-6">{errorMessage}</div>
       </div>
     )
   }
