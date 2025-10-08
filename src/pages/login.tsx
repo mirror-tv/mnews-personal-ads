@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import logo from '@/assets/icons/mnews-logo.svg'
 import MailOrPhoneForm from '@/components/login/mail-or-phone-form'
 import OptForm from '@/components/login/opt-form'
+import { PageHeader } from '@/components/shared/page-header'
 
 export default function Login() {
   const navigate = useNavigate()
@@ -119,11 +120,15 @@ export default function Login() {
 
   return (
     <div>
-      <header className="flex h-[64px] items-center justify-center p-4">
-        <a href="/">
-          <img src={logo} alt="logo" width="144" height="36" />
-        </a>
-      </header>
+      <PageHeader
+        variant="centered"
+        logo={{
+          src: logo as unknown as string,
+          alt: 'logo',
+          width: 144,
+          height: 36,
+        }}
+      />
 
       <section className="flex h-[calc(100vh-64px)] justify-center bg-surface-secondary">
         <div className="mx-4 mt-8 flex h-fit max-w-[288px] flex-col items-center rounded-xl border border-border-default bg-surface-primary p-4 shadow-lg md:max-w-[448px] md:min-w-[448px] md:p-6">
