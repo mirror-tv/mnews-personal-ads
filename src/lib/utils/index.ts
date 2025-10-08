@@ -1,14 +1,7 @@
-import { clsx, type ClassValue } from 'clsx'
-import { twMerge } from 'tailwind-merge'
+import { OrderStatusMap, type OrderStatus } from '../constants'
+import { type OrderRecord } from '../mockData'
 
-import { OrderStatusMap, type OrderStatus } from './constants'
-import { type OrderRecord } from './mockData'
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
-}
-
-export const OrderStatusUtils = {
+const OrderStatusUtils = {
   getLabel: (status: OrderStatus) => OrderStatusMap[status].label,
   getDescription: (status: OrderStatus) => OrderStatusMap[status].description,
   getColors: (status: OrderStatus) => OrderStatusMap[status].colors,
@@ -19,7 +12,7 @@ export const OrderStatusUtils = {
     })),
 }
 
-export function filterOrders(
+function filterOrders(
   orders: OrderRecord[],
   searchKeyword: string,
   status: string
@@ -36,7 +29,7 @@ export function filterOrders(
   })
 }
 
-export function getStatusStats(orders: OrderRecord[]) {
+function getStatusStats(orders: OrderRecord[]) {
   const total = orders.length
   const statusCounts = orders.reduce(
     (acc, order) => {
@@ -48,3 +41,10 @@ export function getStatusStats(orders: OrderRecord[]) {
 
   return { total, statusCounts }
 }
+
+// Local exports — domain-related helpers
+export { OrderStatusUtils, filterOrders, getStatusStats }
+
+// Re-exports — generic shared utilities
+export * from './cn'
+export * from './devLog'

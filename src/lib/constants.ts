@@ -1,4 +1,6 @@
-export const OrderStatusMap = {
+type OrderStatus = keyof typeof OrderStatusMap
+
+const OrderStatusMap = {
   // 原始狀態 - 淺灰色背景，深灰色文字
   pending_upload: {
     label: '待上傳素材',
@@ -120,4 +122,5 @@ export const OrderStatusMap = {
   },
 } as const
 
-export type OrderStatus = keyof typeof OrderStatusMap
+export { OrderStatusMap }
+export type { OrderStatus }
