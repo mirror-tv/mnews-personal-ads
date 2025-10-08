@@ -2,30 +2,17 @@ import { useState, useMemo } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
-import ArrowBackIcon from '@/assets/icons/arrow-back.svg?react'
-import DetailIcon from '@/assets/icons/detail.svg?react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
-import { StatusBadge } from '@/components/ui/status-badge'
-import { OrderStatusUtils, type OrderStatus } from '@/lib/constants'
-import { mockOrderData, filterOrders } from '@/lib/mockData'
+import { EmptyState } from '@/components/list/empty-state'
+import { OrderTable } from '@/components/list/order-table'
+import { SearchAndFilter } from '@/components/list/search-and-filter'
+import { PageHeader } from '@/components/shared/page-header'
+import { mockOrderData } from '@/lib/mockData'
+import { filterOrders } from '@/lib/utils'
 
 export default function List() {
   const navigate = useNavigate()
   const [searchKeyword, setSearchKeyword] = useState('')
   const [orderStatus, setOrderStatus] = useState<string>('all')
-
-  const orderStatusOptions = [
-    { value: 'all', label: '全部狀態' },
-    ...OrderStatusUtils.getAllOptions(),
-  ]
 
   const filteredOrders = useMemo(() => {
     return filterOrders(mockOrderData, searchKeyword, orderStatus)
@@ -40,159 +27,29 @@ export default function List() {
   }
 
   return (
-    <div className="min-h-screen bg-surface-secondary">
-      <header className="bg-surface-primary px-5 py-4 shadow-sm md:px-15">
-        <div className="m-auto flex items-center gap-5">
-          <button
-            onClick={handleBack}
-            className="mr-3 flex h-8 w-8 items-center justify-center bg-transparent transition-colors duration-200 hover:text-text-secondary focus:text-text-tertiary focus:outline-none"
-          >
-            <ArrowBackIcon className="h-5 w-5" />
-          </button>
-          <p className="text-base font-medium text-text-primary md:text-xl">
-            訂單紀錄
-          </p>
-        </div>
-      </header>
+    <div className="min-h-screen">
+      <PageHeader title="訂單紀錄" showBackButton onBack={handleBack} />
 
-      <main className="px-4 py-6">
-        <div className="mx-auto mb-6 flex flex-col items-start gap-6 rounded-xl border border-border-default bg-surface-primary p-6">
-          <h2 className="text-lg font-medium text-text-primary">搜尋與篩選</h2>
+      <main className="mx-auto max-w-[1080px] px-4 py-6 md:px-15">
+        <SearchAndFilter
+          searchKeyword={searchKeyword}
+          onSearchChange={setSearchKeyword}
+          orderStatus={orderStatus}
+          onStatusChange={setOrderStatus}
+        />
 
-          <div className="flex w-full flex-col gap-4 md:flex-row">
-            <div className="flex-1">
-              <label className="mb-2 block text-sm font-medium text-text-primary">
-                搜尋關鍵字
-              </label>
-              <Input
-                type="text"
-                value={searchKeyword}
-                onChange={(e) => setSearchKeyword(e.target.value)}
-                placeholder="搜尋商品名稱"
-                icon={
-                  <svg
-                    className="h-5 w-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                  </svg>
-                }
-                className="w-full rounded-lg border-border-default bg-surface-tertiary py-3 text-sm placeholder-text-tertiary focus:border-transparent focus:ring-0 focus:outline-none focus-visible:ring-0"
-              />
-            </div>
-            <div className="w-full flex-1">
-              <label className="mb-2 block text-sm font-medium text-text-primary">
-                訂單狀態
-              </label>
-              <Select value={orderStatus} onValueChange={setOrderStatus}>
-                <SelectTrigger className="w-full rounded-lg border-border-default bg-surface-tertiary py-3 text-sm focus:border-transparent focus:ring-0 focus:outline-none focus-visible:ring-0">
-                  <SelectValue placeholder="選擇狀態" />
-                </SelectTrigger>
-                <SelectContent>
-                  {orderStatusOptions.map((option) => (
-                    <SelectItem key={option.value} value={option.value}>
-                      {option.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-        </div>
-
-        <div className="mx-auto mb-6 flex flex-col items-start gap-6 rounded-xl border border-border-default bg-surface-primary p-6">
+        <div className="mb-6 flex flex-col gap-6 rounded-xl border border-border-default bg-surface-primary p-6">
           <h4 className="text-lg font-medium text-text-primary">
             訂單列表 ({filteredOrders.length}筆記錄)
           </h4>
 
           {!filteredOrders.length ? (
-            <div className="py-12 text-center">
-              <svg
-                className="mx-auto h-12 w-12 text-text-tertiary"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
-              <h4 className="mt-4 text-sm font-medium text-text-primary">
-                暫無訂單資料
-              </h4>
-              <p className="mt-2 text-sm text-text-secondary">
-                搜尋條件：{searchKeyword ? `"${searchKeyword}"` : '無關鍵字'}
-                {orderStatus !== 'all' &&
-                  ` • ${OrderStatusUtils.getLabel(orderStatus as OrderStatus)}`}
-              </p>
-            </div>
+            <EmptyState
+              searchKeyword={searchKeyword}
+              orderStatus={orderStatus}
+            />
           ) : (
-            <div className="w-full overflow-x-scroll">
-              <table className="min-w-full divide-y divide-border-default">
-                <thead>
-                  <tr>
-                    <th className="p-2 text-left text-sm tracking-wide text-text-primary uppercase">
-                      訂單編號
-                    </th>
-                    <th className="p-2 text-left text-sm tracking-wide text-text-primary uppercase">
-                      商品名稱
-                    </th>
-                    <th className="p-2 text-left text-sm tracking-wide text-text-primary uppercase">
-                      排播日期
-                    </th>
-                    <th className="p-2 text-left text-sm tracking-wide text-text-primary uppercase">
-                      狀態
-                    </th>
-                    <th className="p-2 text-left text-sm tracking-wide text-text-primary uppercase">
-                      最後更新
-                    </th>
-                    <th className="p-2 text-left text-sm tracking-wide text-text-primary uppercase">
-                      操作
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-border-default bg-surface-primary">
-                  {filteredOrders.map((order) => (
-                    <tr key={order.id} className="hover:bg-surface-secondary">
-                      <td className="px-2 py-3 text-sm whitespace-nowrap text-text-primary">
-                        {order.orderNumber}
-                      </td>
-                      <td className="px-2 py-3 text-sm whitespace-nowrap text-text-primary">
-                        {order.productName}
-                      </td>
-                      <td className="px-2 py-3 text-sm whitespace-nowrap text-text-primary">
-                        {order.broadcastDate}
-                      </td>
-                      <td className="px-2 py-3 whitespace-nowrap">
-                        <StatusBadge status={order.status} />
-                      </td>
-                      <td className="px-2 py-3 text-sm whitespace-nowrap text-text-primary">
-                        {order.lastUpdated}
-                      </td>
-                      <td className="px-2 py-3 text-sm whitespace-nowrap text-text-primary">
-                        <Button
-                          onClick={() => handleViewOrder(order.id)}
-                          className="flex h-8 w-12 w-auto items-center justify-center gap-1 rounded-[6px] border border-blue-6 bg-surface-primary px-3 text-sm font-medium text-blue-6 hover:bg-blue-6 hover:text-white focus:outline-none"
-                        >
-                          <DetailIcon className="h-4 w-4" />
-                          查看
-                        </Button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <OrderTable orders={filteredOrders} onViewOrder={handleViewOrder} />
           )}
         </div>
       </main>

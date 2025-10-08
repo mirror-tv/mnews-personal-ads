@@ -35,7 +35,7 @@ import {
   TableBody,
   TableCell,
 } from '@/components/ui/table'
-import { ORDER_STATUSES, OrderStatusUtils } from '@/lib/constants'
+import { OrderStatusUtils } from '@/lib/utils'
 import { cn } from '@/lib/utils'
 
 export default function Demo() {
@@ -109,7 +109,7 @@ export default function Demo() {
               <TableCell>Summer Promo</TableCell>
               <TableCell>
                 <Badge variant="pending-upload">
-                  {OrderStatusUtils.getLabel(ORDER_STATUSES.PENDING_UPLOAD)}
+                  {OrderStatusUtils.getLabel('pending_upload')}
                 </Badge>
               </TableCell>
               <TableCell>
@@ -123,7 +123,7 @@ export default function Demo() {
               <TableCell>Winter Fair</TableCell>
               <TableCell>
                 <Badge variant="broadcasted">
-                  {OrderStatusUtils.getLabel(ORDER_STATUSES.BROADCASTED)}
+                  {OrderStatusUtils.getLabel('broadcasted')}
                 </Badge>
               </TableCell>
               <TableCell>

@@ -1,6 +1,7 @@
-import { Badge, badgeVariants } from './badge'
+import { Badge } from './badge'
 
-import { OrderStatusUtils, type OrderStatus } from '@/lib/constants'
+import { type OrderStatus } from '@/lib/constants'
+import { OrderStatusUtils } from '@/lib/utils'
 
 type StatusBadgeProps = {
   status: OrderStatus
@@ -9,12 +10,13 @@ type StatusBadgeProps = {
 
 export function StatusBadge({ status, className = '' }: StatusBadgeProps) {
   const label = OrderStatusUtils.getLabel(status)
-  const variant = OrderStatusUtils.getBadgeVariant(
-    status
-  ) as keyof typeof badgeVariants
+  const colors = OrderStatusUtils.getColors(status)
 
   return (
-    <Badge variant={variant} className={className}>
+    <Badge
+      variant="outline"
+      className={`${colors.bg} ${colors.text} ${colors.border} ${className}`}
+    >
       {label}
     </Badge>
   )
