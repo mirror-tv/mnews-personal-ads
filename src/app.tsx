@@ -18,6 +18,10 @@ export default function App() {
           <Link to={isLocal ? '/' : '/login'} className="hover:text-blue-400">
             Preview
           </Link>
+          <Link to="/demo" className="hover:text-green-400">
+            Demo
+          </Link>
+          <span className="font-extrabold">|</span>
           <Link to="/login" className="hover:text-purple-400">
             Login
           </Link>
@@ -33,26 +37,26 @@ export default function App() {
           <Link to="/order" className="hover:text-red-400">
             Order
           </Link>
-          <Link to="/demo" className="hover:text-green-400">
-            Demo
-          </Link>
         </nav>
       )}
 
       <Routes>
-        {/* Route "/" changes behavior by env */}
+        {/* Local-only routes */}
         {isLocal ? (
-          <Route path="/" element={<LocalPreview />} />
+          <>
+            <Route path="/" element={<LocalPreview />} />
+            <Route path="/demo" element={<Demo />} />
+          </>
         ) : (
           <Route path="/" element={<Navigate to="/login" replace />} />
         )}
+        {/* Shared routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/upload" element={<Upload />} />
         <Route path="/list" element={<List />} />
         <Route path="/order" element={<Order />} />
-        <Route path="/order/:id" element={<Order />} />
-        <Route path="/demo" element={<Demo />} />
+        <Route path="/order/:id" element={<Order />} />≈
       </Routes>
     </>
   )
