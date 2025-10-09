@@ -15,15 +15,13 @@ export function OrderStatus({ order, className = '' }: OrderStatusProps) {
   const valueClassName = 'text-base font-normal text-text-primary'
 
   return (
-    <div
-      className={`w-full max-w-60 space-y-6 md:max-w-none xl:max-w-60 ${className}`}
-    >
+    <div className={`w-full space-y-6 md:max-w-none xl:max-w-60 ${className}`}>
       <div className="w-full rounded-lg border border-border-default bg-surface-primary p-6">
         <h5 className="text-h4 mb-4 font-medium text-text-primary">
           訂單資訊與狀態
         </h5>
 
-        <div className="md:flex md:gap-6 xl:flex-col">
+        <div className="md:flex md:gap-6 xl:flex-col xl:gap-0">
           <div className="md:flex-1">
             <div className="space-y-3">
               <div>
