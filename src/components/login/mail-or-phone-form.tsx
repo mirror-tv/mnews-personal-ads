@@ -1,6 +1,6 @@
-import arrow from '@/assets/icons/arrow.svg'
-import mailIcon from '@/assets/icons/mail.svg'
-import phoneIcon from '@/assets/icons/phone.svg'
+import arrowSvg from '@/assets/icons/arrow.svg'
+import mailSvg from '@/assets/icons/mail.svg'
+import phoneSvg from '@/assets/icons/phone.svg'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 
@@ -54,7 +54,14 @@ export default function MailOrPhoneForm({
               className="h-[45px] rounded-lg"
               error={error.includes('電子信箱') ? 'error' : undefined}
               errorMessage={error.includes('電子信箱') ? error : ''}
-              icon={<img src={mailIcon} alt="mail" width="16" height="16" />}
+              icon={
+                <img
+                  src={mailSvg as unknown as string}
+                  alt="mail"
+                  width="16"
+                  height="16"
+                />
+              }
             />
           </div>
         )}
@@ -76,7 +83,14 @@ export default function MailOrPhoneForm({
               className="rounded-lg"
               error={error.includes('手機號碼') ? 'error' : undefined}
               errorMessage={error.includes('手機號碼') ? error : ''}
-              icon={<img src={phoneIcon} alt="phone" width="16" height="16" />}
+              icon={
+                <img
+                  src={phoneSvg as unknown as string}
+                  alt="phone"
+                  width="16"
+                  height="16"
+                />
+              }
             />
           </div>
         )}
@@ -89,7 +103,7 @@ export default function MailOrPhoneForm({
         >
           使用{status === 'email' ? '手機號碼' : '電子信箱'}登入
           <img
-            src={arrow}
+            src={arrowSvg as unknown as string}
             alt="arrow"
             width="16"
             height="17"

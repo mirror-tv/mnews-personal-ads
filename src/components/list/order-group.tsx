@@ -2,7 +2,7 @@ import { type ReactElement } from 'react'
 
 import { OrderRow } from './order-row'
 
-import { type OrderRecord } from '@/lib/mockData'
+import { type OrderRecord } from '@/mocks/mockData'
 
 interface OrderGroupProps {
   order: OrderRecord

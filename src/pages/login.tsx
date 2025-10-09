@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
-import logo from '@/assets/icons/mnews-logo.svg'
+// import logo from '@/assets/icons/mnews-logo.svg'
 import MailOrPhoneForm from '@/components/login/mail-or-phone-form'
 import OptForm from '@/components/login/opt-form'
 import { PageHeader } from '@/components/shared/page-header'
+import PageMain from '@/components/shared/page-main'
 
 export default function Login() {
   const navigate = useNavigate()
@@ -119,47 +120,40 @@ export default function Login() {
   }
 
   return (
-    <div>
-      <PageHeader
-        variant="centered"
-        logo={{
-          src: logo as unknown as string,
-          alt: 'logo',
-          width: 144,
-          height: 36,
-        }}
-      />
+    <>
+      <PageHeader variant="centered" />
+      <PageMain className="h-screen">
+        <section className="flex h-full items-center justify-center">
+          <div className="flex h-fit max-w-[288px] flex-col items-center rounded-xl border border-border-default bg-surface-primary p-4 shadow-lg md:max-w-[448px] md:min-w-[448px] md:p-6">
+            {status !== 'OPT' && (
+              <MailOrPhoneForm
+                status={status}
+                email={email}
+                phone={phone}
+                setEmail={setEmail}
+                setPhone={setPhone}
+                setStatus={setStatus}
+                handleSubmit={handleSubmit}
+                isLoading={isLoading}
+                error={error}
+              />
+            )}
 
-      <section className="flex h-[calc(100vh-64px)] justify-center bg-surface-secondary">
-        <div className="mx-4 mt-8 flex h-fit max-w-[288px] flex-col items-center rounded-xl border border-border-default bg-surface-primary p-4 shadow-lg md:max-w-[448px] md:min-w-[448px] md:p-6">
-          {status !== 'OPT' && (
-            <MailOrPhoneForm
-              status={status}
-              email={email}
-              phone={phone}
-              setEmail={setEmail}
-              setPhone={setPhone}
-              setStatus={setStatus}
-              handleSubmit={handleSubmit}
-              isLoading={isLoading}
-              error={error}
-            />
-          )}
-
-          {status === 'OPT' && (
-            <OptForm
-              email={email}
-              phone={phone}
-              error={error}
-              isLoading={isLoading}
-              countdown={countdown}
-              canResend={canResend}
-              handleOtpSubmit={handleOtpSubmit}
-              handleResendOtp={handleResendOtp}
-            />
-          )}
-        </div>
-      </section>
-    </div>
+            {status === 'OPT' && (
+              <OptForm
+                email={email}
+                phone={phone}
+                error={error}
+                isLoading={isLoading}
+                countdown={countdown}
+                canResend={canResend}
+                handleOtpSubmit={handleOtpSubmit}
+                handleResendOtp={handleResendOtp}
+              />
+            )}
+          </div>
+        </section>
+      </PageMain>
+    </>
   )
 }

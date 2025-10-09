@@ -171,8 +171,9 @@
   --screen-xxl: 1400px; /* Extra extra large devices (≥1400px) */
 
   /* Breakpoint Aliases — Semantic names */
-  --screen-tablet: 768px; /* Alias for md (≥768px) */
-  --screen-desktop: 1200px; /* Alias for xl (≥1200px) */
+  --screen-tablet: 768px; /* Alias for md (≥768px) TODO: not work */
+  --screen-desktop: 1200px; /* Alias for xl (≥1200px) TODO: not work*/
+
   --radius: 0.625rem;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.13 0.028 261.692);
@@ -379,8 +380,8 @@
   --screen-lg: var(--screen-lg);
   --screen-xl: var(--screen-xl);
   --screen-xxl: var(--screen-xxl);
-  --screen-tablet: var(--screen-tablet);
-  --screen-desktop: var(--screen-desktop);
+  --screen-tablet: var(--screen-tablet); /* TODO: not work */
+  --screen-desktop: var(--screen-desktop); /* TODO: not work */
 
   /* ─────────────── UI structural tokens (shadcn) ─────────────── */
   --radius: var(--radius);
@@ -534,5 +535,15 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family:
+      'Noto Sans TC',
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      'Helvetica Neue',
+      Arial,
+      sans-serif;
   }
 }
