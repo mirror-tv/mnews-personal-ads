@@ -43,22 +43,25 @@ export const mockOrderData: OrderRecord[] = [
       },
     },
   },
+
   {
     id: '3',
     orderNumber: '#C5F9H1',
     productName: '春季新品發布',
     broadcastDate: '2024/3/2-2024/12/28',
-    status: 'pending_quote_confirmation',
+    status: 'video_production',
     lastUpdated: '2025/12/20',
   },
+
   {
     id: '4',
     orderNumber: '#D6I2J3',
     productName: '秋季清倉優惠',
     broadcastDate: '2024/5/27-2024/1/9',
-    status: 'pending_broadcast_date',
+    status: 'pending_confirmation',
     lastUpdated: '2025/12/22',
   },
+
   {
     id: '5',
     orderNumber: '#E7K4L5',
@@ -67,6 +70,7 @@ export const mockOrderData: OrderRecord[] = [
     status: 'pending_schedule',
     lastUpdated: '2025/12/24',
   },
+
   {
     id: '6',
     orderNumber: '#F8M6N7',
@@ -75,52 +79,65 @@ export const mockOrderData: OrderRecord[] = [
     status: 'broadcasted',
     lastUpdated: '2025/12/19',
   },
+
   {
     id: '7',
     orderNumber: '#G9O8P9',
     productName: '情人節甜蜜禮盒',
     broadcastDate: '2024/1/8-2024/12/10',
-    status: 'pending_upload',
+    status: 'modification_request',
     lastUpdated: '2025/12/18',
+    related: {
+      id: '7-1',
+      orderNumber: '#G9O8P9',
+      productName: '情人節甜蜜禮盒',
+      broadcastDate: '2024/1/8-2024/12/10',
+      status: 'pending_confirmation',
+      lastUpdated: '2025/12/18',
+    },
   },
+
   {
     id: '8',
     orderNumber: '#H0Q1R2',
     productName: '母親節溫馨獻禮',
     broadcastDate: '2024/8/14-2024/12/26',
-    status: 'material_uploaded',
+    status: 'pending_quote_confirmation',
     lastUpdated: '2025/12/15',
+    related: {
+      id: '8-1',
+      orderNumber: '#H0Q1R2',
+      productName: '母親節溫馨獻禮',
+      broadcastDate: '2024/8/14-2024/12/26',
+      status: 'modification_request',
+      lastUpdated: '2025/12/15',
+    },
   },
+
   {
     id: '9',
     orderNumber: '#I1S3T4',
     productName: '父親節感恩特惠',
     broadcastDate: '2023/12/29-2024/12/20',
-    status: 'video_production',
+    status: 'transferred',
     lastUpdated: '2025/12/14',
   },
+
   {
     id: '10',
     orderNumber: '#J2U5V6',
     productName: '兒童節歡樂禮品',
     broadcastDate: '2024/12/28-2025/1/11',
-    status: 'pending_confirmation',
+    status: 'pending_broadcast_date',
     lastUpdated: '2025/12/13',
   },
+
   {
     id: '11',
     orderNumber: '#K3W7X8',
     productName: '中秋節團圓套餐',
     broadcastDate: '2024/12/29-2025/4/9',
-    status: 'pending_schedule',
-    lastUpdated: '2025/12/12',
-  },
-  {
-    id: '12',
-    orderNumber: '#L4Y9Z0',
-    productName: '國慶日愛國專案',
-    broadcastDate: '2024/8/6-2025/2/9',
     status: 'cancelled',
-    lastUpdated: '2025/12/11',
+    lastUpdated: '2025/12/12',
   },
 ]

@@ -547,3 +547,18 @@
       sans-serif;
   }
 }
+
+@layer utilities {
+  .text-red-7 {
+    color: var(--color-red-7);
+  }
+  .text-yellow-7 {
+    color: var(--color-yellow-7);
+  }
+  .text-blue-7 {
+    color: var(--color-blue-7);
+  }
+  .text-green-7 {
+    color: var(--color-green-7);
+  }
+}
