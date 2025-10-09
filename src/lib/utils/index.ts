@@ -5,6 +5,10 @@ const OrderStatusUtils = {
   getLabel: (status: OrderStatus) => OrderStatusMap[status].label,
   getDescription: (status: OrderStatus) => OrderStatusMap[status].description,
   getColors: (status: OrderStatus) => OrderStatusMap[status].colors,
+  getBadgeVariant: (status: OrderStatus) => {
+    // 將狀態名稱轉換為 badge 變體名稱
+    return status.replace(/_/g, '-')
+  },
   getAllOptions: () =>
     Object.entries(OrderStatusMap).map(([value, info]) => ({
       value,
