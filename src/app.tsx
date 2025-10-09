@@ -1,5 +1,8 @@
+import { useState } from 'react'
+
 import { Routes, Route, Link, Navigate } from 'react-router-dom'
 
+import { Button } from './components/ui/button'
 import { env } from './config/env'
 import Dashboard from './pages/dashboard'
 import Demo from './pages/demo'
@@ -9,13 +12,16 @@ import Login from './pages/login'
 import Order from './pages/order'
 import Upload from './pages/upload'
 
+const isLocalOrDev = ['local', 'dev'].includes(env.ENV)
+
 export default function App() {
-  const isLocal = env.ENV === 'local'
+  const [open, setOpen] = useState(true)
+
   return (
     <>
-      {isLocal && (
-        <nav className="flex justify-center gap-4 bg-gray-800 p-4 text-white">
-          <Link to={isLocal ? '/' : '/login'} className="hover:text-blue-400">
+      {isLocalOrDev && open && (
+        <nav className="relative flex justify-center gap-4 bg-gray-800 p-4 text-white">
+          <Link to={'/'} className="hover:text-blue-400">
             Preview
           </Link>
           <Link to="/demo" className="hover:text-green-400">
@@ -37,12 +43,18 @@ export default function App() {
           <Link to="/order" className="hover:text-red-400">
             Order
           </Link>
+          <Button
+            className="absolute top-2.5 right-8"
+            onClick={() => setOpen(false)}
+          >
+            close
+          </Button>
         </nav>
       )}
 
       <Routes>
-        {/* Local-only routes */}
-        {isLocal ? (
+        {/* Local or dev-only routes */}
+        {isLocalOrDev ? (
           <>
             <Route path="/" element={<LocalPreview />} />
             <Route path="/demo" element={<Demo />} />
