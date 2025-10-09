@@ -1,50 +1,75 @@
-import { Routes, Route, Link } from 'react-router-dom'
+import { useState } from 'react'
 
+import { Routes, Route, Link, Navigate } from 'react-router-dom'
+
+import { Button } from './components/ui/button'
+import { env } from './config/env'
 import Dashboard from './pages/dashboard'
 import Demo from './pages/demo'
-import Home from './pages/home'
 import List from './pages/list'
+import LocalPreview from './pages/local-preview'
 import Login from './pages/login'
 import Order from './pages/order'
 import Upload from './pages/upload'
 
+const isLocalOrDev = ['local', 'dev'].includes(env.ENV)
+
 export default function App() {
+  const [open, setOpen] = useState(true)
+
   return (
-    <div>
-      <nav className="flex justify-center gap-4 bg-gray-800 p-4 text-white">
-        <Link to="/" className="hover:text-blue-400">
-          Home
-        </Link>
-        <Link to="/login" className="hover:text-purple-400">
-          Login
-        </Link>
-        <Link to="/dashboard" className="hover:text-indigo-400">
-          Dashboard
-        </Link>
-        <Link to="/upload" className="hover:text-pink-400">
-          Upload
-        </Link>
-        <Link to="/list" className="hover:text-yellow-400">
-          List
-        </Link>
-        <Link to="/order" className="hover:text-red-400">
-          Order
-        </Link>
-        <Link to="/demo" className="hover:text-green-400">
-          Demo
-        </Link>
-      </nav>
+    <>
+      {isLocalOrDev && open && (
+        <nav className="relative flex justify-center gap-4 bg-gray-800 p-4 text-white">
+          <Link to={'/'} className="hover:text-blue-400">
+            Preview
+          </Link>
+          <Link to="/demo" className="hover:text-green-400">
+            Demo
+          </Link>
+          <span className="font-extrabold">|</span>
+          <Link to="/login" className="hover:text-purple-400">
+            Login
+          </Link>
+          <Link to="/dashboard" className="hover:text-indigo-400">
+            Dashboard
+          </Link>
+          <Link to="/upload" className="hover:text-pink-400">
+            Upload
+          </Link>
+          <Link to="/list" className="hover:text-yellow-400">
+            List
+          </Link>
+          <Link to="/order" className="hover:text-red-400">
+            Order
+          </Link>
+          <Button
+            className="absolute top-2.5 right-8"
+            onClick={() => setOpen(false)}
+          >
+            close
+          </Button>
+        </nav>
+      )}
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* Local or dev-only routes */}
+        {isLocalOrDev ? (
+          <>
+            <Route path="/" element={<LocalPreview />} />
+            <Route path="/demo" element={<Demo />} />
+          </>
+        ) : (
+          <Route path="/" element={<Navigate to="/login" replace />} />
+        )}
+        {/* Shared routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/upload" element={<Upload />} />
         <Route path="/list" element={<List />} />
         <Route path="/order" element={<Order />} />
-        <Route path="/order/:id" element={<Order />} />
-        <Route path="/demo" element={<Demo />} />
+        <Route path="/order/:id" element={<Order />} />≈
       </Routes>
-    </div>
+    </>
   )
 }
