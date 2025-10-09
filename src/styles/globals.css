@@ -476,11 +476,6 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
 
-  /* Layout widths */
-  --layout-max-width-desktop: 1080px;
-  --layout-max-width-tablet: 720px;
-  --layout-max-width-mobile: 288px;
-
   @keyframes accordion-down {
     from {
       height: 0;
