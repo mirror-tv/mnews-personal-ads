@@ -1,5 +1,5 @@
 import { OrderStatusMap, type OrderStatus } from '../constants'
-import { type OrderRecord } from '../mockData'
+import { type OrderRecord } from '../mocks/mockData'
 
 const OrderStatusUtils = {
   getLabel: (status: OrderStatus) => OrderStatusMap[status].label,

@@ -1,5 +1,5 @@
 import { OrderGroup } from '@/components/list/order-group'
-import { type OrderRecord } from '@/lib/mockData'
+import { type OrderRecord } from '@/mocks/mockData'
 
 const TABLE_HEADER_CLASS =
   'p-2 text-left text-sm tracking-wide text-text-primary uppercase'

@@ -18,9 +18,12 @@ export default function App() {
   const [open, setOpen] = useState(true)
 
   return (
-    <>
+    <div className="relative min-h-screen bg-surface-secondary">
       {isLocalOrDev && open && (
-        <nav className="relative flex justify-center gap-4 bg-gray-800 p-4 text-white">
+        <nav className="fixed bottom-0 flex w-full justify-center gap-4 bg-gray-800 p-4 text-white">
+          <span className="absolute top-5 left-2 text-sm font-semibold tracking-wide uppercase opacity-80">
+            Dev Navigation
+          </span>
           <Link to={'/'} className="hover:text-blue-400">
             Preview
           </Link>
@@ -70,6 +73,6 @@ export default function App() {
         <Route path="/order" element={<Order />} />
         <Route path="/order/:id" element={<Order />} />≈
       </Routes>
-    </>
+    </div>
   )
 }
