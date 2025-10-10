@@ -1,17 +1,28 @@
 type InstructionsProps = {
   className?: string
+  status?: string
 }
 
-export function Instructions({ className = '' }: InstructionsProps) {
+export function Instructions({ className = '', status }: InstructionsProps) {
   // 重複的樣式常數
   const textStyles = 'font-sans text-sm leading-normal'
   const dotStyles = 'mt-2 size-1 rounded-full bg-[#D97706]'
 
-  return (
-    <div
-      className={`flex flex-col items-start gap-1 self-stretch rounded-lg border border-[#FDE68A] bg-[#FFFBEB] p-4 ${className}`}
-    >
-      <h6 className={`${textStyles} font-medium text-[#A16207]`}>說明</h6>
+  // 根據狀態顯示不同的說明內容
+  const getInstructionsContent = () => {
+    if (status === 'pending_broadcast_date') {
+      return (
+        <ul className={`space-y-2 ${textStyles} font-normal text-[#D97706]`}>
+          <li className="flex items-start gap-2">
+            <span>
+              由於您未在 9/21 23:59 前完成確認，原始排播日期已作廢，請重新設定
+            </span>
+          </li>
+        </ul>
+      )
+    }
+
+    return (
       <ul className={`space-y-2 ${textStyles} font-normal text-[#D97706]`}>
         <li className="flex items-start gap-2">
           <span className={dotStyles}></span>
@@ -30,6 +41,15 @@ export function Instructions({ className = '' }: InstructionsProps) {
           </span>
         </li>
       </ul>
+    )
+  }
+
+  return (
+    <div
+      className={`flex flex-col items-start gap-1 self-stretch rounded-lg border border-[#FDE68A] bg-[#FFFBEB] p-4 ${className}`}
+    >
+      <h6 className={`${textStyles} font-medium text-[#A16207]`}>說明</h6>
+      {getInstructionsContent()}
     </div>
   )
 }
