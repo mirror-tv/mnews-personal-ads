@@ -10,6 +10,7 @@ type OrderPreviewProps = {
 }
 
 export function OrderPreview({ order, className = '' }: OrderPreviewProps) {
+  console.log(order.status)
   return (
     <section
       className={`space-y-6 rounded-lg border border-gray-3 bg-white p-6 ${className}`}
@@ -17,7 +18,10 @@ export function OrderPreview({ order, className = '' }: OrderPreviewProps) {
       <ProductionPreview />
       <hr className="my-6 border-gray-3" />
       <RelatedDocuments />
-      {order.status === 'pending_confirmation' && <Instructions />}
+      {(order.status === 'pending_confirmation' ||
+        order.status === 'pending_broadcast_date') && (
+        <Instructions status={order.status} />
+      )}
     </section>
   )
 }

@@ -1,5 +1,5 @@
-// 狀態顏色主題
-const STATUS_THEMES = {
+// 標籤顏色主題（用於狀態標籤顯示）
+const LABEL_THEMES = {
   gray: {
     bg: 'bg-gray-2',
     text: 'text-gray-8',
@@ -38,17 +38,34 @@ const STATUS_THEMES = {
   },
 } as const
 
+// 進度條狀態顏色主題（用於進度條 active 狀態）
+const PROGRESS_STATUS_THEMES = {
+  orange: {
+    bg: 'bg-[#D97706]',
+    text: 'text-[#D97706]',
+    border: 'border-[#D97706]',
+    dot: 'bg-[#D97706]',
+  },
+  red: {
+    bg: 'bg-[#DC2626]',
+    text: 'text-[#DC2626]',
+    border: 'border-[#DC2626]',
+    dot: 'bg-[#DC2626]',
+  },
+} as const
+
 // 進度條顏色規則
 const PROGRESS_COLOR_RULES = {
   // 根據步驟索引獲取 active 狀態的顏色
   getActiveColor: (index: number, type: 'text' | 'bg' = 'text'): string => {
     const colorMap = {
-      0: 'red-7', // 1. 待上傳素材
+      0: 'red', // 1. 待上傳素材
       1: 'yellow-7', // 2. 素材已上傳
       2: 'yellow-7', // 3. 影片製作中
-      3: 'red-7', // 4. 待確認
-      4: 'blue-7', // 5. 待排播
-      5: 'green-7', // 6. 已播出
+      3: 'red', // 4. 待確認
+      4: 'orange', // 5. 提出修改要求
+      5: 'red', // 6. 待確認修改報價
+      6: 'green-7', // 7. 已轉移/已播出
     } as const
 
     const color = colorMap[index as keyof typeof colorMap]
@@ -57,8 +74,23 @@ const PROGRESS_COLOR_RULES = {
     }
 
     if (type === 'text') {
+      // 處理進度條狀態顏色主題
+      if (color === 'orange') {
+        return PROGRESS_STATUS_THEMES.orange.text
+      }
+      if (color === 'red') {
+        return PROGRESS_STATUS_THEMES.red.text
+      }
       // 使用 globals.css 中定義的文字顏色類別
       return `text-${color}`
+    }
+
+    // 處理進度條狀態顏色主題
+    if (color === 'orange') {
+      return PROGRESS_STATUS_THEMES.orange.bg
+    }
+    if (color === 'red') {
+      return PROGRESS_STATUS_THEMES.red.bg
     }
 
     return `${type}-${color}`
@@ -74,57 +106,57 @@ export const OrderStatusMap = {
   pending_upload: {
     label: '待上傳素材',
     description: '等待客戶上傳廣告素材',
-    colors: STATUS_THEMES.gray,
+    colors: LABEL_THEMES.gray,
   },
   material_uploaded: {
     label: '素材已上傳',
     description: '素材已收到，準備進入製作流程',
-    colors: STATUS_THEMES.yellow,
+    colors: LABEL_THEMES.yellow,
   },
   modification_request: {
     label: '提出修改要求',
     description: '已提出修改要求，等待客戶回應',
-    colors: STATUS_THEMES.yellow,
+    colors: LABEL_THEMES.yellow,
   },
   video_production: {
     label: '影片製作中',
     description: '影片正在製作中，請稍候',
-    colors: STATUS_THEMES.yellow,
+    colors: LABEL_THEMES.yellow,
   },
   pending_confirmation: {
     label: '待確認',
     description: '等待客戶確認最終版本',
-    colors: STATUS_THEMES.red,
+    colors: LABEL_THEMES.red,
   },
   pending_quote_confirmation: {
     label: '待確認修改報價',
     description: '等待客戶確認修改後的報價',
-    colors: STATUS_THEMES.red,
+    colors: LABEL_THEMES.red,
   },
   pending_broadcast_date: {
     label: '待設定排播日期',
     description: '等待客戶設定排播日期',
-    colors: STATUS_THEMES.red,
+    colors: LABEL_THEMES.red,
   },
   transferred: {
     label: '已轉移',
     description: '訂單已轉移給其他團隊處理',
-    colors: STATUS_THEMES.dark,
+    colors: LABEL_THEMES.dark,
   },
   cancelled: {
     label: '已作廢',
     description: '訂單已取消作廢',
-    colors: STATUS_THEMES.dark,
+    colors: LABEL_THEMES.dark,
   },
   pending_schedule: {
     label: '待排播',
     description: '確認完成，等待排播時間',
-    colors: STATUS_THEMES.blue,
+    colors: LABEL_THEMES.blue,
   },
   broadcasted: {
     label: '已播出',
     description: '廣告已播出完成',
-    colors: STATUS_THEMES.green,
+    colors: LABEL_THEMES.green,
   },
 } as const
 
