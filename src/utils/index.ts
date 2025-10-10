@@ -1,20 +1,4 @@
-import { OrderStatusMap, type OrderStatus } from '../constants'
-import { type OrderRecord } from '../mocks/mockData'
-
-const OrderStatusUtils = {
-  getLabel: (status: OrderStatus) => OrderStatusMap[status].label,
-  getDescription: (status: OrderStatus) => OrderStatusMap[status].description,
-  getColors: (status: OrderStatus) => OrderStatusMap[status].colors,
-  getBadgeVariant: (status: OrderStatus) => {
-    // 將狀態名稱轉換為 badge 變體名稱
-    return status.replace(/_/g, '-')
-  },
-  getAllOptions: () =>
-    Object.entries(OrderStatusMap).map(([value, info]) => ({
-      value,
-      label: info.label,
-    })),
-}
+import { type OrderRecord, type OrderStatus } from '../status/orderStatus'
 
 function filterOrders(
   orders: OrderRecord[],
@@ -47,7 +31,7 @@ function getStatusStats(orders: OrderRecord[]) {
 }
 
 // Local exports — domain-related helpers
-export { OrderStatusUtils, filterOrders, getStatusStats }
+export { filterOrders, getStatusStats }
 
 // Re-exports — generic shared utilities
 export * from './cn'

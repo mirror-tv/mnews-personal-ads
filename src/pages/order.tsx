@@ -8,15 +8,7 @@ import { OrderStatus as OrderStatusComponent } from '@/components/order/order-st
 import { TestModal } from '@/components/order/test-modal'
 import { PageHeader } from '@/components/shared/page-header'
 import { mockOrderData } from '@/lib/mockData'
-
-// 需要顯示 OrderPreview 的狀態
-const PREVIEW_REQUIRED_STATUSES = [
-  'pending_confirmation',
-  'pending_schedule',
-  'broadcasted',
-  'modification_request',
-  'pending_broadcast_date',
-] as const
+import { ORDER_STATUS_CONFIG, ORDER_STYLES } from '@/lib/status/orderStyles'
 
 export default function Order() {
   const { id } = useParams()
@@ -31,17 +23,20 @@ export default function Order() {
     return <OrderNotFound orderId={id} />
   }
 
+  const shouldShowPreview =
+    ORDER_STATUS_CONFIG.PREVIEW_REQUIRED_STATUSES.includes(
+      order.status as (typeof ORDER_STATUS_CONFIG.PREVIEW_REQUIRED_STATUSES)[number]
+    )
+
   return (
-    <div className="min-h-screen w-full bg-gray-1">
+    <div className={ORDER_STYLES.pageContainer}>
       <PageHeader title="訂單詳情" showBackButton />
-      <div className="m-auto max-w-[980px]">
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex flex-col gap-4 xl:flex-row xl:gap-8">
-            <div className="flex-1 space-y-6">
+      <div className={ORDER_STYLES.contentContainer}>
+        <div className={ORDER_STYLES.innerContainer}>
+          <div className={ORDER_STYLES.layoutGrid}>
+            <div className={`flex-1 ${ORDER_STYLES.sectionSpacing}`}>
               <OrderDetails order={order} />
-              {PREVIEW_REQUIRED_STATUSES.includes(
-                order.status as (typeof PREVIEW_REQUIRED_STATUSES)[number]
-              ) && <OrderPreview order={order} />}
+              {shouldShowPreview && <OrderPreview order={order} />}
               <OrderActions order={order} />
             </div>
             <OrderStatusComponent order={order} />

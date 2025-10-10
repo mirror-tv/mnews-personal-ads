@@ -1,19 +1,26 @@
+import { ORDER_STATUS } from '@/lib/status/orderStatus'
+
 type InstructionsProps = {
   className?: string
   status?: string
 }
 
 export function Instructions({ className = '', status }: InstructionsProps) {
-  // 重複的樣式常數
-  const textStyles = 'font-sans text-sm leading-normal'
-  const dotStyles = 'mt-2 size-1 rounded-full bg-[#D97706]'
+  // 樣式常數
+  const styles = {
+    container:
+      'flex flex-col items-start gap-1 self-stretch rounded-lg border border-[#FDE68A] bg-[#FFFBEB] p-4',
+    title: 'font-sans text-sm leading-normal font-medium text-[#A16207]',
+    list: 'space-y-2 font-sans text-sm leading-normal font-normal text-[#D97706]',
+    listItem: 'flex items-start gap-2',
+    dot: 'mt-2 size-1 rounded-full bg-[#D97706]',
+  }
 
-  // 根據狀態顯示不同的說明內容
   const getInstructionsContent = () => {
-    if (status === 'pending_broadcast_date') {
+    if (status === ORDER_STATUS.PENDING_BROADCAST_DATE) {
       return (
-        <ul className={`space-y-2 ${textStyles} font-normal text-[#D97706]`}>
-          <li className="flex items-start gap-2">
+        <ul className={styles.list}>
+          <li className={styles.listItem}>
             <span>
               由於您未在 9/21 23:59 前完成確認，原始排播日期已作廢，請重新設定
             </span>
@@ -23,19 +30,19 @@ export function Instructions({ className = '', status }: InstructionsProps) {
     }
 
     return (
-      <ul className={`space-y-2 ${textStyles} font-normal text-[#D97706]`}>
-        <li className="flex items-start gap-2">
-          <span className={dotStyles}></span>
+      <ul className={styles.list}>
+        <li className={styles.listItem}>
+          <span className={styles.dot}></span>
           <span>
             確認無誤，請於9/21 23:59前，於下方訂單操作區點選「確認」按鈕
           </span>
         </li>
-        <li className="flex items-start gap-2">
-          <span className={dotStyles}></span>
+        <li className={styles.listItem}>
+          <span className={styles.dot}></span>
           <span>如需修改，請點選「提出修改」按鈕</span>
         </li>
-        <li className="flex items-start gap-2">
-          <span className={dotStyles}></span>
+        <li className={styles.listItem}>
+          <span className={styles.dot}></span>
           <span>
             若操作未在9/21 23:59前完成，原始排播日期將會作廢，需重新設定
           </span>
@@ -45,10 +52,8 @@ export function Instructions({ className = '', status }: InstructionsProps) {
   }
 
   return (
-    <div
-      className={`flex flex-col items-start gap-1 self-stretch rounded-lg border border-[#FDE68A] bg-[#FFFBEB] p-4 ${className}`}
-    >
-      <h6 className={`${textStyles} font-medium text-[#A16207]`}>說明</h6>
+    <div className={`${styles.container} ${className}`}>
+      <h6 className={styles.title}>說明</h6>
       {getInstructionsContent()}
     </div>
   )

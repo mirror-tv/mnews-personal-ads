@@ -5,6 +5,7 @@ import EditIcon from '@/assets/icons/edit.svg?react'
 import UploadIcon from '@/assets/icons/upload.svg?react'
 import { Button } from '@/components/ui/button'
 import { type OrderRecord } from '@/lib/mockData'
+import { ORDER_STATUS } from '@/lib/status/orderStatus'
 
 type OrderActionsProps = {
   order: OrderRecord
@@ -14,10 +15,6 @@ type OrderActionsProps = {
 export function OrderActions({ order, className = '' }: OrderActionsProps) {
   const [isUploading, setIsUploading] = useState(false)
   const [isConfirming, setIsConfirming] = useState(false)
-  const [isModifying, setIsModifying] = useState(false)
-  const [isSettingSchedule, setIsSettingSchedule] = useState(false)
-  const [hasModificationRequested, setHasModificationRequested] =
-    useState(false)
 
   const handleUploadClick = async () => {
     if (isUploading) return
@@ -55,42 +52,14 @@ export function OrderActions({ order, className = '' }: OrderActionsProps) {
     }
   }
 
-  // 處理提出修改按鈕點擊
-  const handleSettingScheduleClick = async () => {
-    if (isSettingSchedule) return
-
-    setIsSettingSchedule(true)
-
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 5000))
-
-      alert('排播日期設定完成，進入下一個階段')
-      // 可以 trigger parent component 的 cb 來更新訂單狀態
-      // onStatusChange?.('pending_schedule')
-    } catch (error) {
-      console.error('設定排播日期失敗:', error)
-    } finally {
-      setIsSettingSchedule(false)
-    }
+  const handleSettingScheduleClick = () => {
+    alert('進入排定日程頁面')
+    // 跳轉到排播頁面
   }
 
-  const handleModifyClick = async () => {
-    if (isModifying) return
-
-    setIsModifying(true)
-
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 5000))
-
-      alert('修改要求已提出，進入下一個階段')
-      setHasModificationRequested(true)
-      // 可以 trigger parent component 的 cb 來更新訂單狀態
-      // onStatusChange?.('modification_request')
-    } catch (error) {
-      console.error('提出修改失敗:', error)
-    } finally {
-      setIsModifying(false)
-    }
+  const handleModifyClick = () => {
+    alert('進入修改頁面，俊昕交給你了')
+    // 跳轉到修改頁面
   }
 
   const styles = {
@@ -110,7 +79,7 @@ export function OrderActions({ order, className = '' }: OrderActionsProps) {
 
   const getActionContent = () => {
     switch (order.status) {
-      case 'pending_upload':
+      case ORDER_STATUS.PENDING_UPLOAD:
         return {
           buttonText: '上傳素材',
           buttonIcon: <UploadIcon />,
@@ -119,8 +88,8 @@ export function OrderActions({ order, className = '' }: OrderActionsProps) {
           helpLinkText: '申請退款',
           statusMessage: null,
         }
-      case 'material_uploaded':
-      case 'video_production':
+      case ORDER_STATUS.MATERIAL_UPLOADED:
+      case ORDER_STATUS.VIDEO_PRODUCTION:
         return {
           buttonText: null,
           buttonIcon: null,
@@ -129,7 +98,7 @@ export function OrderActions({ order, className = '' }: OrderActionsProps) {
           helpLinkText: '申請退款',
           statusMessage: '請等待業務確認素材，如沒問題便會繼續製作影片。',
         }
-      case 'pending_schedule':
+      case ORDER_STATUS.PENDING_SCHEDULE:
         return {
           buttonText: null,
           buttonIcon: null,
@@ -138,7 +107,7 @@ export function OrderActions({ order, className = '' }: OrderActionsProps) {
           helpLinkText: '申請退款',
           statusMessage: '排播時間已設定，正在等待廣告播出。',
         }
-      case 'broadcasted':
+      case ORDER_STATUS.BROADCASTED:
         return {
           buttonText: null,
           buttonIcon: null,
@@ -147,7 +116,7 @@ export function OrderActions({ order, className = '' }: OrderActionsProps) {
           helpLinkText: '申請退款',
           statusMessage: '廣告已成功播出。',
         }
-      case 'pending_broadcast_date':
+      case ORDER_STATUS.PENDING_BROADCAST_DATE:
         return {
           buttonText: '設定排播日期',
           buttonIcon: <EditIcon />,
@@ -156,7 +125,7 @@ export function OrderActions({ order, className = '' }: OrderActionsProps) {
           helpLinkText: '申請退款',
           statusMessage: null,
         }
-      case 'pending_confirmation':
+      case ORDER_STATUS.PENDING_CONFIRMATION:
         return {
           buttonText: '確認',
           buttonIcon: <DoneWithCircleIcon />,
@@ -165,12 +134,12 @@ export function OrderActions({ order, className = '' }: OrderActionsProps) {
           helpLinkText: '申請退款',
           statusMessage: null,
           secondaryButton: {
-            text: hasModificationRequested ? '已提出修改' : '提出修改',
+            text: '提出修改',
             icon: <EditIcon />,
             className: styles.secondaryButton,
           },
         }
-      case 'cancelled':
+      case ORDER_STATUS.CANCELLED:
         return {
           buttonText: null,
           buttonIcon: null,
@@ -179,7 +148,7 @@ export function OrderActions({ order, className = '' }: OrderActionsProps) {
           helpLinkText: '申請退款',
           statusMessage: '本訂單已作廢。',
         }
-      case 'transferred':
+      case ORDER_STATUS.TRANSFERRED:
         return {
           buttonText: null,
           buttonIcon: null,
@@ -188,7 +157,7 @@ export function OrderActions({ order, className = '' }: OrderActionsProps) {
           helpLinkText: '申請退款',
           statusMessage: '此訂單已轉移至新訂單，請到新訂單進行操作。',
         }
-      case 'pending_quote_confirmation':
+      case ORDER_STATUS.PENDING_QUOTE_CONFIRMATION:
         return {
           buttonText: null,
           buttonIcon: null,
@@ -229,17 +198,14 @@ export function OrderActions({ order, className = '' }: OrderActionsProps) {
                     ? handleSettingScheduleClick
                     : undefined
             }
-            disabled={isUploading || isConfirming || isSettingSchedule}
+            disabled={isUploading || isConfirming}
           >
             {actionContent.buttonIcon}
             {isUploading && actionContent.buttonText === '上傳素材'
               ? '上傳中...'
               : isConfirming && actionContent.buttonText === '確認'
                 ? '確認中...'
-                : isSettingSchedule &&
-                    actionContent.buttonText === '設定排播日期'
-                  ? '設定中...'
-                  : actionContent.buttonText}
+                : actionContent.buttonText}
           </Button>
         )}
         {actionContent.secondaryButton && (
@@ -252,12 +218,10 @@ export function OrderActions({ order, className = '' }: OrderActionsProps) {
                 ? handleModifyClick
                 : undefined
             }
-            disabled={isModifying || hasModificationRequested}
+            disabled={false}
           >
             {actionContent.secondaryButton.icon}
-            {isModifying && actionContent.secondaryButton.text === '提出修改'
-              ? '提出中...'
-              : actionContent.secondaryButton.text}
+            {actionContent.secondaryButton.text}
           </Button>
         )}
         {actionContent.statusMessage && (

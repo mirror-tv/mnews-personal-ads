@@ -1,118 +1,30 @@
 import DoneIcon from '@/assets/icons/done.svg?react'
 import {
   OrderStatusMap,
-  ORDER_STATUS_DISPLAY_ORDER,
   PROGRESS_COLOR_RULES,
+  getStatusesByRoute,
+  getCurrentRoute,
   type OrderStatus,
-} from '@/lib/constants'
+} from '@/lib/status/orderStatus'
 
 type ProgressStepsProps = {
-  currentStatusIndex: number
+  currentStatus: OrderStatus
   className?: string
 }
 
 export function ProgressSteps({
-  currentStatusIndex,
+  currentStatus,
   className = '',
 }: ProgressStepsProps) {
-  const currentStatus = ORDER_STATUS_DISPLAY_ORDER[currentStatusIndex]
-  const isCancelled = currentStatus === 'cancelled'
-  const isTransferred = currentStatus === 'transferred'
-  const isModificationFlow = [
-    'modification_request',
-    'pending_quote_confirmation',
-    'transferred',
-  ].includes(currentStatus)
-  const isTimeoutFlow = currentStatus === 'pending_broadcast_date'
+  const currentRoute = getCurrentRoute(currentStatus)
 
-  // 定義不同流程的步驟
-  const getProgressSteps = () => {
-    if (isCancelled) {
-      return ['cancelled']
-    }
+  const progressSteps = getStatusesByRoute(currentRoute)
 
-    if (isModificationFlow) {
-      // 修改流程：前4個步驟 + 修改流程步驟
-      return [
-        'pending_upload',
-        'material_uploaded',
-        'video_production',
-        'pending_confirmation',
-        'modification_request',
-        'pending_quote_confirmation',
-        'transferred',
-      ]
-    }
-
-    if (isTimeoutFlow) {
-      // 超時流程：包含待設定排播日期
-      return [
-        'pending_upload',
-        'material_uploaded',
-        'video_production',
-        'pending_broadcast_date',
-        'pending_confirmation',
-        'pending_schedule',
-        'broadcasted',
-      ]
-    }
-
-    // 正統流程
-    return [
-      'pending_upload',
-      'material_uploaded',
-      'video_production',
-      'pending_confirmation',
-      'pending_schedule',
-      'broadcasted',
-    ]
-  }
-
-  const progressSteps = getProgressSteps()
-
-  // 獲取步驟狀態
   const getStepStatus = (step: OrderStatus, index: number) => {
     const isActive = currentStatus === step
     const completedStyle = PROGRESS_COLOR_RULES.getCompletedStyle()
-
-    if (isCancelled) {
-      return {
-        isCompleted: true,
-        isActive: false,
-        style: completedStyle,
-      }
-    }
-
-    if (isTransferred) {
-      return {
-        isCompleted: true,
-        isActive: false,
-        style: completedStyle,
-      }
-    }
-
-    if (isModificationFlow) {
-      // 修改流程：前4個步驟 completed，當前步驟 active，後續步驟 pending
-      const currentIndex = progressSteps.indexOf(currentStatus)
-      return {
-        isCompleted: index < currentIndex,
-        isActive: isActive,
-        style: completedStyle,
-      }
-    }
-
-    if (isTimeoutFlow) {
-      // 超時流程：根據當前狀態決定 completed 步驟
-      const currentIndex = progressSteps.indexOf(currentStatus)
-      return {
-        isCompleted: index < currentIndex,
-        isActive: isActive,
-        style: completedStyle,
-      }
-    }
-
-    // 正統流程：根據當前狀態決定 completed 步驟
     const currentIndex = progressSteps.indexOf(currentStatus)
+
     return {
       isCompleted: index < currentIndex,
       isActive: isActive,
@@ -135,7 +47,7 @@ export function ProgressSteps({
                   stepStatus.isCompleted
                     ? stepStatus.style.bgColor
                     : stepStatus.isActive
-                      ? PROGRESS_COLOR_RULES.getActiveColor(index, 'bg')
+                      ? PROGRESS_COLOR_RULES.getActiveColor(status, 'bg')
                       : 'bg-gray-4'
                 }`}
               >
@@ -146,7 +58,7 @@ export function ProgressSteps({
                   stepStatus.isCompleted
                     ? stepStatus.style.textColor
                     : stepStatus.isActive
-                      ? PROGRESS_COLOR_RULES.getActiveColor(index, 'text')
+                      ? PROGRESS_COLOR_RULES.getActiveColor(status, 'text')
                       : 'text-text-tertiary'
                 }`}
               >
