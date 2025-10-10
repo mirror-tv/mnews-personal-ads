@@ -6,7 +6,7 @@ import {
   getCurrentRoute,
   ORDER_STATUS,
   type OrderStatus,
-} from '@/lib/status/orderStatus'
+} from '@/status/orderStatus'
 
 type ProgressStepsProps = {
   currentStatus: OrderStatus
@@ -17,11 +17,8 @@ export function ProgressSteps({
   currentStatus,
   className = '',
 }: ProgressStepsProps) {
-  // 對於已作廢和已轉移狀態，只顯示該狀態本身
-  if (
-    currentStatus === ORDER_STATUS.CANCELLED ||
-    currentStatus === ORDER_STATUS.TRANSFERRED
-  ) {
+  // 對於已作廢狀態，只顯示該狀態本身
+  if (currentStatus === ORDER_STATUS.CANCELLED) {
     const progressSteps = [currentStatus]
 
     return (
@@ -62,9 +59,12 @@ export function ProgressSteps({
     const completedStyle = PROGRESS_COLOR_RULES.getCompletedStyle()
     const currentIndex = progressSteps.indexOf(currentStatus)
 
+    const isTransferredRoute = currentRoute === 'transferred'
+    const isCompleted = isTransferredRoute ? true : index < currentIndex
+
     return {
-      isCompleted: index < currentIndex,
-      isActive: isActive,
+      isCompleted: isCompleted,
+      isActive: isActive && !isTransferredRoute,
       style: completedStyle,
     }
   }
