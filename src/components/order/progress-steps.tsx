@@ -4,6 +4,7 @@ import {
   PROGRESS_COLOR_RULES,
   getStatusesByRoute,
   getCurrentRoute,
+  ORDER_STATUS,
   type OrderStatus,
 } from '@/lib/status/orderStatus'
 
@@ -16,8 +17,44 @@ export function ProgressSteps({
   currentStatus,
   className = '',
 }: ProgressStepsProps) {
-  const currentRoute = getCurrentRoute(currentStatus)
+  // 對於已作廢和已轉移狀態，只顯示該狀態本身
+  if (
+    currentStatus === ORDER_STATUS.CANCELLED ||
+    currentStatus === ORDER_STATUS.TRANSFERRED
+  ) {
+    const progressSteps = [currentStatus]
 
+    return (
+      <div className={className}>
+        <h6 className="mb-3 text-sm font-medium text-text-secondary">
+          處理進度
+        </h6>
+        <div className="space-y-2">
+          {progressSteps.map((status) => {
+            const statusConfig = OrderStatusMap[status]
+            const completedStyle = PROGRESS_COLOR_RULES.getCompletedStyle()
+
+            return (
+              <div key={status} className="flex items-center gap-3">
+                <div
+                  className={`flex size-3 items-center justify-center rounded-full ${completedStyle.bgColor}`}
+                >
+                  <DoneIcon />
+                </div>
+                <span
+                  className={`text-sm font-medium ${completedStyle.textColor}`}
+                >
+                  {statusConfig.label}
+                </span>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    )
+  }
+
+  const currentRoute = getCurrentRoute(currentStatus)
   const progressSteps = getStatusesByRoute(currentRoute)
 
   const getStepStatus = (step: OrderStatus, index: number) => {
