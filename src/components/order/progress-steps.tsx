@@ -17,11 +17,8 @@ export function ProgressSteps({
   currentStatus,
   className = '',
 }: ProgressStepsProps) {
-  // 對於已作廢和已轉移狀態，只顯示該狀態本身
-  if (
-    currentStatus === ORDER_STATUS.CANCELLED ||
-    currentStatus === ORDER_STATUS.TRANSFERRED
-  ) {
+  // 對於已作廢狀態，只顯示該狀態本身
+  if (currentStatus === ORDER_STATUS.CANCELLED) {
     const progressSteps = [currentStatus]
 
     return (
@@ -61,12 +58,14 @@ export function ProgressSteps({
     const isActive = currentStatus === step
     const completedStyle = PROGRESS_COLOR_RULES.getCompletedStyle()
 
-    // 根據當前狀態決定步驟狀態
     const currentIndex = progressSteps.indexOf(currentStatus)
 
+    const isTransferredRoute = currentRoute === 'transferred'
+    const isCompleted = isTransferredRoute ? true : index < currentIndex
+
     return {
-      isCompleted: index < currentIndex,
-      isActive: isActive,
+      isCompleted: isCompleted,
+      isActive: isActive && !isTransferredRoute,
       style: completedStyle,
     }
   }

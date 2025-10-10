@@ -1,7 +1,12 @@
 import { COLOR_THEMES } from './colors'
 
 // 狀態路線類型
-export type StatusRoute = 'normal' | 'cancel' | 'setTime' | 'edit'
+export type StatusRoute =
+  | 'normal'
+  | 'cancel'
+  | 'setTime'
+  | 'edit'
+  | 'transferred'
 
 // 訂單狀態常量 - 集中管理所有狀態名稱
 export const ORDER_STATUS = {
@@ -98,13 +103,14 @@ export const getStatusesByRoute = (route: StatusRoute): OrderStatus[] => {
       ORDER_STATUS.PENDING_QUOTE_CONFIRMATION,
       ORDER_STATUS.TRANSFERRED,
     ],
-    cancel: [
+    transferred: [
       ORDER_STATUS.PENDING_UPLOAD,
       ORDER_STATUS.MATERIAL_UPLOADED,
       ORDER_STATUS.VIDEO_PRODUCTION,
       ORDER_STATUS.PENDING_CONFIRMATION,
+      ORDER_STATUS.MODIFICATION_REQUEST,
+      ORDER_STATUS.PENDING_QUOTE_CONFIRMATION,
       ORDER_STATUS.TRANSFERRED,
-      ORDER_STATUS.CANCELLED,
     ],
     setTime: [
       ORDER_STATUS.PENDING_UPLOAD,
@@ -115,17 +121,18 @@ export const getStatusesByRoute = (route: StatusRoute): OrderStatus[] => {
       ORDER_STATUS.PENDING_SCHEDULE,
       ORDER_STATUS.BROADCASTED,
     ],
+    cancel: [ORDER_STATUS.CANCELLED],
   }
 
   return routeOrderMap[route] || []
 }
 
 export const getCurrentRoute = (status: OrderStatus): StatusRoute => {
-  if (
-    status === ORDER_STATUS.CANCELLED ||
-    status === ORDER_STATUS.TRANSFERRED
-  ) {
+  if (status === ORDER_STATUS.CANCELLED) {
     return 'cancel'
+  }
+  if (status === ORDER_STATUS.TRANSFERRED) {
+    return 'transferred'
   }
   if (
     status === ORDER_STATUS.MODIFICATION_REQUEST ||
