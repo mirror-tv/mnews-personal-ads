@@ -1,6 +1,5 @@
 import { ProgressSteps } from './progress-steps'
 
-import { ORDER_STATUS_DISPLAY_ORDER } from '@/lib/constants'
 import { type OrderRecord } from '@/lib/mockData'
 
 type OrderStatusProps = {
@@ -9,8 +8,6 @@ type OrderStatusProps = {
 }
 
 export function OrderStatus({ order, className = '' }: OrderStatusProps) {
-  const currentStatusIndex = ORDER_STATUS_DISPLAY_ORDER.indexOf(order.status)
-
   const labelClassName = 'text-sm font-medium text-text-secondary'
   const valueClassName = 'text-base font-normal text-text-primary'
 
@@ -40,7 +37,7 @@ export function OrderStatus({ order, className = '' }: OrderStatusProps) {
           </div>
 
           <div className="mt-6 border-t border-border-default pt-6 md:mt-0 md:flex-1 md:border-t-0 md:pt-0 xl:mt-6 xl:border-t xl:pt-6">
-            <ProgressSteps currentStatusIndex={currentStatusIndex} />
+            <ProgressSteps currentStatus={order.status} />
           </div>
         </div>
       </div>
