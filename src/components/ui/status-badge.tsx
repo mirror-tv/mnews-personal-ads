@@ -1,7 +1,7 @@
 import { Badge } from './badge'
 
-import { type OrderStatus } from '@/lib/constants'
-import { OrderStatusUtils } from '@/lib/utils'
+import { type OrderStatus } from '@/lib/status/orderStatus'
+import { OrderStatusUtils } from '@/lib/status/utils'
 
 type StatusBadgeProps = {
   status: OrderStatus

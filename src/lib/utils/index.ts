@@ -1,16 +1,4 @@
-import { OrderStatusMap, type OrderStatus } from '../constants'
-import { type OrderRecord } from '../mockData'
-
-const OrderStatusUtils = {
-  getLabel: (status: OrderStatus) => OrderStatusMap[status].label,
-  getDescription: (status: OrderStatus) => OrderStatusMap[status].description,
-  getColors: (status: OrderStatus) => OrderStatusMap[status].colors,
-  getAllOptions: () =>
-    Object.entries(OrderStatusMap).map(([value, info]) => ({
-      value,
-      label: info.label,
-    })),
-}
+import { type OrderRecord, type OrderStatus } from '../index'
 
 function filterOrders(
   orders: OrderRecord[],
@@ -43,7 +31,7 @@ function getStatusStats(orders: OrderRecord[]) {
 }
 
 // Local exports — domain-related helpers
-export { OrderStatusUtils, filterOrders, getStatusStats }
+export { filterOrders, getStatusStats }
 
 // Re-exports — generic shared utilities
 export * from './cn'
