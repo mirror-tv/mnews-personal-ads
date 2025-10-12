@@ -1,4 +1,4 @@
-import { type OrderStatus } from './constants'
+import type { OrderStatus } from '../constants'
 
 export type OrderRecord = {
   id: string

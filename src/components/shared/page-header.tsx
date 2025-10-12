@@ -1,70 +1,98 @@
-import { type ComponentType, type ReactNode } from 'react'
+import type { ReactNode } from 'react'
+
+import { Link, useNavigate } from 'react-router-dom'
+
+import { Button } from '../ui/button'
 
 import ArrowBackIcon from '@/assets/icons/arrow-back.svg?react'
+import logoutSvg from '@/assets/icons/log-out.svg'
+import logoSvg from '@/assets/icons/mnews-logo.svg'
+import { layout } from '@/constants'
+import { cn } from '@/utils'
 
-type PageHeaderProps = {
-  title?: string
-  showBackButton?: boolean
-  onBack?: () => void
-  variant?: 'default' | 'centered'
-  logo?: {
-    src: string | ReactNode | ComponentType<{ width?: number; height?: number }>
-    alt: string
-    width?: number
-    height?: number
-  }
-}
+type PageHeaderProps =
+  | { variant?: 'default'; title?: string }
+  | { variant: 'centered'; title?: never }
+  | { variant: 'spread'; title: string }
 
-export function PageHeader({
-  title,
-  showBackButton = false,
-  onBack,
-  variant = 'default',
-  logo,
-}: PageHeaderProps) {
+export function PageHeader({ title, variant = 'default' }: PageHeaderProps) {
+  const isDefault = variant === 'default'
   const isCentered = variant === 'centered'
+  const isSpread = variant === 'spread'
 
   return (
     <header
-      className={`flex items-center bg-surface-primary px-5 py-4 shadow-sm md:px-15 ${
-        isCentered && 'h-[64px] items-center justify-center'
-      }`}
+      className={cn(
+        'fixed top-0 flex h-12 w-full items-center bg-surface-primary shadow-sm',
+        'md:h-16 md:px-5 md:py-4'
+      )}
     >
       <div
-        className={`m-auto flex w-full max-w-[980px] ${
-          isCentered && 'items-center justify-center gap-5'
-        }`}
-      >
-        {showBackButton && !isCentered && (
-          <button
-            onClick={onBack}
-            className="mr-3 flex h-8 w-8 items-center justify-center bg-transparent transition-colors hover:text-text-secondary focus:text-text-tertiary focus:outline-none"
-          >
-            <ArrowBackIcon className="h-5 w-5" />
-          </button>
+        className={cn(
+          'm-auto flex w-full items-center',
+          layout.maxWidthResponsive,
+          isCentered && 'justify-center',
+          isSpread && 'justify-between'
         )}
-
-        {logo && isCentered ? (
-          <a href="/">
-            {typeof logo.src === 'string' ? (
-              <img
-                src={logo.src}
-                alt={logo.alt}
-                width={logo.width || 144}
-                height={logo.height || 36}
-              />
-            ) : typeof logo.src === 'function' ? (
-              <logo.src width={logo.width || 144} height={logo.height || 36} />
-            ) : (
-              logo.src
-            )}
-          </a>
-        ) : (
-          <p className="text-base font-medium text-text-primary md:text-xl">
-            {title || ''}
-          </p>
+      >
+        {isDefault && (
+          <>
+            <ArrowButton />
+            <Title>{title}</Title>
+          </>
+        )}
+        {isCentered && (
+          <>
+            <Logo />
+          </>
+        )}
+        {isSpread && (
+          <>
+            <Logo className="hidden md:block" />
+            <Title>{title}</Title>
+            <Button variant="outline">
+              <img src={logoutSvg as unknown as string} alt="log out" />
+              登出
+            </Button>
+          </>
         )}
       </div>
     </header>
+  )
+}
+
+function ArrowButton() {
+  const navigate = useNavigate()
+  const handleBack = () => {
+    navigate(-1)
+  }
+  return (
+    <button
+      onClick={handleBack}
+      className="mr-3 flex size-6 items-center justify-center bg-transparent transition-colors hover:text-text-secondary focus:text-text-tertiary focus:outline-none md:size-8"
+    >
+      <ArrowBackIcon className="size-6" />
+    </button>
+  )
+}
+
+function Logo({ ...props }) {
+  return (
+    <Link to={'/'} {...props}>
+      <img
+        src={logoSvg as unknown as string}
+        alt="logo"
+        width={144}
+        height={36}
+      />
+    </Link>
+  )
+}
+
+function Title({ children }: { children: ReactNode }) {
+  return (
+    <p className="text-base font-medium text-text-primary md:text-xl">
+      {children}
+    </p>
   )
 }

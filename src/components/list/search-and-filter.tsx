@@ -6,7 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { OrderStatusUtils } from '@/lib/utils'
+import { OrderStatusUtils } from '@/utils'
 
 type SearchAndFilterProps = {
   searchKeyword: string

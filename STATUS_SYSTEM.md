@@ -24,11 +24,7 @@
 ### 📦 **導入常數**
 
 ```typescript
-import {
-  ORDER_STATUSES,
-  OrderStatusUtils,
-  type OrderStatus,
-} from '@/lib/constants'
+import { ORDER_STATUSES, OrderStatusUtils, type OrderStatus } from '@/constants'
 ```
 
 ### 🏷️ **獲取狀態標籤**
