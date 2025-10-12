@@ -122,37 +122,35 @@ export default function Login() {
   return (
     <>
       <PageHeader variant="centered" />
-      <PageMain className="h-screen">
-        <section className="flex h-full items-center justify-center">
-          <div className="flex h-fit max-w-[288px] flex-col items-center rounded-xl border border-border-default bg-surface-primary p-4 shadow-lg md:max-w-[448px] md:min-w-[448px] md:p-6">
-            {status !== 'OPT' && (
-              <MailOrPhoneForm
-                status={status}
-                email={email}
-                phone={phone}
-                setEmail={setEmail}
-                setPhone={setPhone}
-                setStatus={setStatus}
-                handleSubmit={handleSubmit}
-                isLoading={isLoading}
-                error={error}
-              />
-            )}
+      <PageMain className="flex h-screen items-center justify-center">
+        <div className="flex h-fit max-w-[288px] flex-col items-center rounded-xl border border-border-default bg-surface-primary p-4 shadow-lg md:max-w-[448px] md:min-w-[448px] md:p-6">
+          {status !== 'OPT' && (
+            <MailOrPhoneForm
+              status={status}
+              email={email}
+              phone={phone}
+              setEmail={setEmail}
+              setPhone={setPhone}
+              setStatus={setStatus}
+              handleSubmit={handleSubmit}
+              isLoading={isLoading}
+              error={error}
+            />
+          )}
 
-            {status === 'OPT' && (
-              <OptForm
-                email={email}
-                phone={phone}
-                error={error}
-                isLoading={isLoading}
-                countdown={countdown}
-                canResend={canResend}
-                handleOtpSubmit={handleOtpSubmit}
-                handleResendOtp={handleResendOtp}
-              />
-            )}
-          </div>
-        </section>
+          {status === 'OPT' && (
+            <OptForm
+              email={email}
+              phone={phone}
+              error={error}
+              isLoading={isLoading}
+              countdown={countdown}
+              canResend={canResend}
+              handleOtpSubmit={handleOtpSubmit}
+              handleResendOtp={handleResendOtp}
+            />
+          )}
+        </div>
       </PageMain>
     </>
   )
