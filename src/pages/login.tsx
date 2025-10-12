@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 // import logo from '@/assets/icons/mnews-logo.svg'
 import MailOrPhoneForm from '@/components/login/mail-or-phone-form'
 import OptForm from '@/components/login/opt-form'
-import { PageHeader } from '@/components/shared/page-header'
+import PageHeader from '@/components/shared/page-header'
 import PageMain from '@/components/shared/page-main'
 
 export default function Login() {

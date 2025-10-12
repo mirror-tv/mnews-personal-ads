@@ -15,7 +15,10 @@ type PageHeaderProps =
   | { variant: 'centered'; title?: never }
   | { variant: 'spread'; title: string }
 
-export function PageHeader({ title, variant = 'default' }: PageHeaderProps) {
+export default function PageHeader({
+  title,
+  variant = 'default',
+}: PageHeaderProps) {
   const isDefault = variant === 'default'
   const isCentered = variant === 'centered'
   const isSpread = variant === 'spread'
