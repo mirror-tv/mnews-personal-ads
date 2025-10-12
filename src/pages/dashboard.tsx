@@ -1,15 +1,108 @@
-import { PageHeader } from '@/components/shared/page-header'
+import ArrowRightIcon from '@/assets/icons/arrow-right.svg?react'
+import FileIcon from '@/assets/icons/file.svg?react'
+import UploadIcon from '@/assets/icons/upload.svg?react'
+import PageHeader from '@/components/shared/page-header'
+import PageMain from '@/components/shared/page-main'
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from '@/components/ui/card'
+import { cn } from '@/utils'
 
 export default function Dashboard() {
   return (
     <>
       <PageHeader variant="spread" title="鏡新聞個人廣告系統" />
-      <div className="flex h-[70vh] flex-col items-center justify-center bg-gray-50">
-        <h1 className="text-3xl font-bold text-indigo-600">Dashboard</h1>
-        <p className="mt-4 text-gray-700">
-          Welcome to your dashboard overview.
-        </p>
-      </div>
+      <PageMain className="my-5 grid grid-rows-[auto_1fr] gap-4 md:my-10 md:gap-10">
+        {/* --- Top two cards --- */}
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
+          {/* Upload Card */}
+          <Card className="cursor-pointer items-center justify-center gap-3">
+            <UploadIcon />
+            <CardTitle className="flex flex-col items-center gap-1">
+              <span>上傳廣告素材</span>
+              <CardDescription>上傳後即可進入製作流程</CardDescription>
+            </CardTitle>
+          </Card>
+
+          {/* history Card */}
+          <Card className="cursor-pointer items-center justify-center gap-3">
+            <FileIcon />
+            <CardTitle className="flex flex-col items-center gap-1">
+              <span>訂單紀錄</span>
+              <CardDescription>查看與管理所有訂單</CardDescription>
+            </CardTitle>
+          </Card>
+        </div>
+
+        {/* --- Bottom: Order status overview --- */}
+        <Card>
+          <CardHeader>
+            <CardTitle>訂單狀態總覽</CardTitle>
+          </CardHeader>
+
+          <CardContent className="grid grid-cols-1 gap-2 md:grid-cols-4 md:gap-4 xl:grid-cols-6">
+            <StatusCard
+              count={2}
+              text="待上傳素材"
+              color="text-gray-6"
+              bgColor="bg-gray-2"
+            />
+            <StatusCard
+              count={1}
+              text="素材已上傳"
+              color="text-yellow-7"
+              bgColor="bg-yellow-1"
+            />
+            <StatusCard
+              count={1}
+              text="影片製作中"
+              color="text-yellow-7"
+              bgColor="bg-yellow-1"
+            />
+            <StatusCard
+              count={1}
+              text="待確認"
+              color="text-red-7"
+              bgColor="bg-red-1"
+            />
+            <StatusCard
+              count={1}
+              text="等待排播"
+              color="text-blue-7"
+              bgColor="bg-blue-1"
+            />
+            <StatusCard
+              count={1}
+              text="已播出"
+              color="text-green-7"
+              bgColor="bg-green-1"
+            />
+          </CardContent>
+        </Card>
+      </PageMain>
     </>
+  )
+}
+
+type StatusCardProps = {
+  count: number
+  text: string
+  color: string
+  bgColor: string
+}
+
+function StatusCard({ count, text, color, bgColor }: StatusCardProps) {
+  return (
+    <div className={cn('flex flex-col rounded-md p-3', color, bgColor)}>
+      <h2 className="text-h2">{count}</h2>
+      <div className="flex items-center justify-between">
+        <span className={cn('text-Caption1', color)}>{text}</span>
+        <ArrowRightIcon stroke="currentColor" />
+      </div>
+    </div>
   )
 }
