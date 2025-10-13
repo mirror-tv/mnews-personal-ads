@@ -7,8 +7,9 @@ import { OrderPreview } from '@/components/order/order-preview'
 import { OrderStatus as OrderStatusComponent } from '@/components/order/order-status'
 import { TestModal } from '@/components/order/test-modal'
 import { PageHeader } from '@/components/shared/page-header'
-import { mockOrderData } from '@/lib/mockData'
-import { ORDER_STATUS_CONFIG, ORDER_STYLES } from '@/lib/status/orderStyles'
+import { ORDER_STYLES } from '@/constants/layout'
+import { ORDER_STATUS_CONFIG } from '@/constants/status/orderStatus'
+import { mockOrderData } from '@/mocks/mockData'
 
 export default function Order() {
   const { id } = useParams()
@@ -30,7 +31,7 @@ export default function Order() {
 
   return (
     <div className={ORDER_STYLES.pageContainer}>
-      <PageHeader title="訂單詳情" showBackButton />
+      <PageHeader title="訂單詳情" variant="default" />
       <div className={ORDER_STYLES.contentContainer}>
         <div className={ORDER_STYLES.innerContainer}>
           <div className={ORDER_STYLES.layoutGrid}>

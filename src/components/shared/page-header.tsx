@@ -7,7 +7,7 @@ import { Button } from '../ui/button'
 import ArrowBackIcon from '@/assets/icons/arrow-back.svg?react'
 import logoutSvg from '@/assets/icons/log-out.svg'
 import logoSvg from '@/assets/icons/mnews-logo.svg'
-import { layout } from '@/constants'
+import { layout } from '@/constants/layout'
 import { cn } from '@/utils'
 
 type PageHeaderProps =

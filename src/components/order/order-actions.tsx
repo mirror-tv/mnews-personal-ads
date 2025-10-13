@@ -4,8 +4,8 @@ import DoneWithCircleIcon from '@/assets/icons/done-with-circle.svg?react'
 import EditIcon from '@/assets/icons/edit.svg?react'
 import UploadIcon from '@/assets/icons/upload.svg?react'
 import { Button } from '@/components/ui/button'
-import { type OrderRecord } from '@/lib/mockData'
 import { ORDER_STATUS } from '@/lib/status/orderStatus'
+import { type OrderRecord } from '@/mocks/mockData'
 
 type OrderActionsProps = {
   order: OrderRecord

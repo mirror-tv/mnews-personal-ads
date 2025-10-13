@@ -3,7 +3,6 @@ import {
   type OrderStatus,
 } from '../constants/status/orderStatus'
 
-// 訂單狀態工具函數
 export const OrderStatusUtils = {
   getLabel: (status: OrderStatus) => OrderStatusMap[status].label,
   getColors: (status: OrderStatus) => OrderStatusMap[status].colors,

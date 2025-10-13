@@ -1,6 +1,6 @@
 import { ProgressSteps } from './progress-steps'
 
-import { type OrderRecord } from '@/lib/mockData'
+import { type OrderRecord } from '@/mocks/mockData'
 
 type OrderStatusProps = {
   order: OrderRecord

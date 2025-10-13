@@ -1,7 +1,7 @@
 import { OrderCard } from './order-card'
 
-import { type OrderRecord } from '@/lib/mockData'
 import { OrderStatusMap } from '@/lib/status/orderStatus'
+import { type OrderRecord } from '@/mocks/mockData'
 
 type OrderGroupProps = {
   status: keyof typeof OrderStatusMap

@@ -1,7 +1,7 @@
 import { TestModal } from './test-modal'
 
 import { PageHeader } from '@/components/shared/page-header'
-import { mockOrderData } from '@/lib/mockData'
+import { mockOrderData } from '@/mocks/mockData'
 
 type OrderNotFoundProps = {
   orderId?: string
