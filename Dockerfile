@@ -31,4 +31,4 @@ COPY --from=builder /app/dist /app/dist
 EXPOSE 8080
 
 # 定義啟動命令，使用 serve 提供靜態檔案
-CMD ["serve", "-s", "/app/dist", "-l", "${PORT}"]
+CMD ["/bin/sh", "-c", "serve -s /app/dist -l ${PORT}"]
