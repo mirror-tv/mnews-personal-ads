@@ -6,7 +6,7 @@ import {
   getCurrentRoute,
   ORDER_STATUS,
   type OrderStatus,
-} from '@/status/orderStatus'
+} from '@/constants/status/orderStatus'
 
 type ProgressStepsProps = {
   currentStatus: OrderStatus

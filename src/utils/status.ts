@@ -1,4 +1,7 @@
-import { OrderStatusMap, type OrderStatus } from './orderStatus'
+import {
+  OrderStatusMap,
+  type OrderStatus,
+} from '../constants/status/orderStatus'
 
 // 訂單狀態工具函數
 export const OrderStatusUtils = {

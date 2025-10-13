@@ -1,6 +1,5 @@
 import { COLOR_THEMES } from './colors'
 
-// 狀態路線類型
 export type StatusRoute =
   | 'normal'
   | 'cancel'
@@ -8,7 +7,6 @@ export type StatusRoute =
   | 'edit'
   | 'transferred'
 
-// 訂單狀態常量 - 集中管理所有狀態名稱
 export const ORDER_STATUS = {
   PENDING_UPLOAD: 'pending_upload',
   MATERIAL_UPLOADED: 'material_uploaded',
@@ -167,4 +165,19 @@ export const PROGRESS_COLOR_RULES = {
     textColor: 'text-text-primary',
     bgColor: 'bg-gray-9',
   }),
+}
+
+export const ORDER_STATUS_CONFIG = {
+  PREVIEW_REQUIRED_STATUSES: [
+    ORDER_STATUS.PENDING_CONFIRMATION,
+    ORDER_STATUS.PENDING_SCHEDULE,
+    ORDER_STATUS.BROADCASTED,
+    ORDER_STATUS.MODIFICATION_REQUEST,
+    ORDER_STATUS.PENDING_BROADCAST_DATE,
+  ] as const,
+
+  INSTRUCTION_REQUIRED_STATUSES: [
+    ORDER_STATUS.PENDING_CONFIRMATION,
+    ORDER_STATUS.PENDING_BROADCAST_DATE,
+  ] as const,
 }

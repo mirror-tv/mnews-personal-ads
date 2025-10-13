@@ -35,9 +35,9 @@ import {
   TableBody,
   TableCell,
 } from '@/components/ui/table'
-import { type OrderStatus } from '@/status/orderStatus'
-import { OrderStatusUtils } from '@/status/utils'
+import { type OrderStatus } from '@/constants/status/orderStatus'
 import { cn } from '@/utils'
+import { OrderStatusUtils } from '@/utils/status'
 
 export default function Demo() {
   const [date, setDate] = useState<Date | undefined>(new Date())
