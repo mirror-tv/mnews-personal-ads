@@ -6,9 +6,8 @@ import { OrderNotFound } from '@/components/order/order-not-found'
 import { OrderPreview } from '@/components/order/order-preview'
 import { OrderStatus as OrderStatusComponent } from '@/components/order/order-status'
 import { TestModal } from '@/components/order/test-modal'
-import { PageHeader } from '@/components/shared/page-header'
-import { ORDER_STYLES } from '@/constants/layout'
-import { ORDER_STATUS_CONFIG } from '@/constants/status/orderStatus'
+import PageHeader from '@/components/shared/page-header'
+import { ORDER_STATUS_CONFIG, ORDER_STYLES } from '@/constants'
 import { mockOrderData } from '@/mocks/mockData'
 
 export default function Order() {

@@ -2,8 +2,7 @@ import { Instructions } from './instructions'
 import { ProductionPreview } from './production-preview'
 import { RelatedDocuments } from './related-documents'
 
-import { ORDER_STYLES } from '@/constants/layout'
-import { ORDER_STATUS } from '@/constants/status/orderStatus'
+import { ORDER_STYLES, ORDER_STATUS } from '@/constants'
 import { type OrderRecord } from '@/mocks/mockData'
 
 type OrderPreviewProps = {

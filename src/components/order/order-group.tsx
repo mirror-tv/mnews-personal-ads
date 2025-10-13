@@ -1,6 +1,6 @@
 import { OrderCard } from './order-card'
 
-import { OrderStatusMap } from '@/constants/status/orderStatus'
+import { OrderStatusMap } from '@/constants'
 import { type OrderRecord } from '@/mocks/mockData'
 
 type OrderGroupProps = {

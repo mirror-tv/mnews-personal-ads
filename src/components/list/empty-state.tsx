@@ -1,5 +1,5 @@
-import { type OrderStatus } from '@/constants/status/orderStatus'
-import { OrderStatusUtils } from '@/utils/status'
+import { type OrderStatus } from '@/constants'
+import { OrderStatusUtils } from '@/utils'
 
 type EmptyStateProps = {
   searchKeyword: string

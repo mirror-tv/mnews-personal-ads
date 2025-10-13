@@ -1,4 +1,4 @@
-import { orderLabels } from '@/constants/labels'
+import { orderLabels } from '@/constants'
 import { type OrderRecord } from '@/mocks/mockData'
 
 type OrderDetailsProps = {
@@ -14,7 +14,7 @@ export function OrderDetails({ order, className = '' }: OrderDetailsProps) {
     <section
       className={`rounded-lg border border-gray-3 bg-white p-6 ${className}`}
     >
-      <h5 className="text-h4 mb-4 font-semibold text-text-primary">
+      <h5 className="mb-4 text-h4 font-semibold text-text-primary">
         {orderLabels.orderData}
       </h5>
       <div className="space-y-3">

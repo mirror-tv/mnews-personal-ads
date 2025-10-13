@@ -14,7 +14,7 @@ export function OrderStatus({ order, className = '' }: OrderStatusProps) {
   return (
     <div className={`w-full space-y-6 md:max-w-none xl:max-w-60 ${className}`}>
       <div className="w-full rounded-lg border border-border-default bg-surface-primary p-6">
-        <h5 className="text-h4 mb-4 font-medium text-text-primary">
+        <h5 className="mb-4 text-h4 font-medium text-text-primary">
           訂單資訊與狀態
         </h5>
 

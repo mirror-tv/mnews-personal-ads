@@ -7,7 +7,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { StatusBadge } from '@/components/ui/status-badge'
-import { OrderStatusMap } from '@/constants/status/orderStatus'
+import { OrderStatusMap } from '@/constants'
 import { type OrderRecord } from '@/mocks/mockData'
 
 type TestModalProps = {

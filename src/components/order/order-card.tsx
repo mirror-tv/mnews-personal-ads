@@ -1,5 +1,5 @@
 import { StatusBadge } from '@/components/ui/status-badge'
-import { OrderStatusMap } from '@/constants/status/orderStatus'
+import { OrderStatusMap } from '@/constants'
 import { type OrderRecord } from '@/mocks/mockData'
 
 type OrderCardProps = {
@@ -23,7 +23,7 @@ export function OrderCard({ order, className = '' }: OrderCardProps) {
       {/* Order header */}
       <div className="mb-3 flex items-start justify-between">
         <div className="flex-1">
-          <h3 className="text-h5 mb-1 font-semibold text-gray-9">
+          <h3 className="mb-1 text-h5 font-semibold text-gray-9">
             {order.productName}
           </h3>
           <p className="text-caption1 text-gray-6">{order.orderNumber}</p>
@@ -33,11 +33,11 @@ export function OrderCard({ order, className = '' }: OrderCardProps) {
 
       {/* Order details */}
       <div className="space-y-2">
-        <div className="text-caption1 flex items-center justify-between">
+        <div className="flex items-center justify-between text-caption1">
           <span className="text-gray-6">播出日期</span>
           <span className="text-gray-8">{order.broadcastDate}</span>
         </div>
-        <div className="text-caption1 flex items-center justify-between">
+        <div className="flex items-center justify-between text-caption1">
           <span className="text-gray-6">最後更新</span>
           <span className="text-gray-8">{order.lastUpdated}</span>
         </div>
@@ -46,10 +46,10 @@ export function OrderCard({ order, className = '' }: OrderCardProps) {
       {/* Action buttons for certain statuses */}
       {order.status === 'pending_confirmation' && (
         <div className="mt-4 flex gap-2">
-          <button className="text-caption1 flex-1 rounded-md bg-red-6 px-3 py-2 text-white transition-colors hover:bg-red-7">
+          <button className="flex-1 rounded-md bg-red-6 px-3 py-2 text-caption1 text-white transition-colors hover:bg-red-7">
             確認
           </button>
-          <button className="text-caption1 flex-1 rounded-md border border-gray-3 px-3 py-2 text-gray-8 transition-colors hover:bg-gray-1">
+          <button className="flex-1 rounded-md border border-gray-3 px-3 py-2 text-caption1 text-gray-8 transition-colors hover:bg-gray-1">
             修改
           </button>
         </div>
