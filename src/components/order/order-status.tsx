@@ -7,10 +7,10 @@ type OrderStatusProps = {
   className?: string
 }
 
-export function OrderStatus({ order, className = '' }: OrderStatusProps) {
-  const labelClassName = 'text-sm font-medium text-text-secondary'
-  const valueClassName = 'text-base font-normal text-text-primary'
+const labelClassName = 'text-sm font-medium text-text-secondary'
+const valueClassName = 'text-base font-normal text-text-primary'
 
+export function OrderStatus({ order, className = '' }: OrderStatusProps) {
   return (
     <div className={`w-full space-y-6 md:max-w-none xl:max-w-60 ${className}`}>
       <div className="w-full rounded-lg border border-border-default bg-surface-primary p-6">

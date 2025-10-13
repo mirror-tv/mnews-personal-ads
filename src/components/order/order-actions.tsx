@@ -1,15 +1,142 @@
 import { useState } from 'react'
 
+import { Link } from 'react-router-dom'
+
 import DoneWithCircleIcon from '@/assets/icons/done-with-circle.svg?react'
 import EditIcon from '@/assets/icons/edit.svg?react'
 import UploadIcon from '@/assets/icons/upload.svg?react'
 import { Button } from '@/components/ui/button'
-import { ORDER_STATUS } from '@/lib/status/orderStatus'
+import { ORDER_STATUS } from '@/constants/status/orderStatus'
 import { type OrderRecord } from '@/mocks/mockData'
 
 type OrderActionsProps = {
   order: OrderRecord
   className?: string
+}
+
+const styles = {
+  container: 'rounded-lg border border-gray-3 bg-white p-6',
+  title: 'text-h4 mb-4 font-semibold text-text-primary',
+  buttonContainer: 'space-y-3',
+  primaryButton: 'bg-blue-6 text-white hover:bg-blue-7',
+  secondaryButton: 'border-gray-3 text-text-secondary hover:bg-gray-1',
+  statusMessage:
+    'font-sans text-sm leading-normal font-normal text-text-secondary',
+  helpContainer:
+    'flex w-full items-start self-stretch rounded-[10px] border border-[var(--color-border-default)] border-gray-3 bg-[var(--color-surface-tertiary)] p-[13px] font-sans text-sm font-medium text-text-secondary',
+  helpText: 'min-w-fit',
+  helpLink:
+    'text-caption1 font-medium text-text-secondary underline hover:text-text-primary',
+}
+
+type ActionConfig = {
+  buttonText: string | null
+  buttonIcon: React.ReactElement | null
+  buttonClassName: string
+  helpText: string
+  helpLinkText: string
+  statusMessage: string | null
+  secondaryButton?: {
+    text: string
+    icon: React.ReactElement
+    className: string
+  }
+}
+
+const ACTION_MAP: Record<string, ActionConfig> = {
+  [ORDER_STATUS.PENDING_UPLOAD]: {
+    buttonText: '上傳素材',
+    buttonIcon: <UploadIcon />,
+    buttonClassName: 'bg-blue-6 text-white hover:bg-blue-7',
+    helpText: '需要協助？',
+    helpLinkText: '申請退款',
+    statusMessage: null,
+  },
+  [ORDER_STATUS.MATERIAL_UPLOADED]: {
+    buttonText: null,
+    buttonIcon: null,
+    buttonClassName: '',
+    helpText: '需要協助？',
+    helpLinkText: '申請退款',
+    statusMessage: '請等待業務確認素材，如沒問題便會繼續製作影片。',
+  },
+  [ORDER_STATUS.VIDEO_PRODUCTION]: {
+    buttonText: null,
+    buttonIcon: null,
+    buttonClassName: '',
+    helpText: '需要協助？',
+    helpLinkText: '申請退款',
+    statusMessage: '請等待業務確認素材，如沒問題便會繼續製作影片。',
+  },
+  [ORDER_STATUS.PENDING_SCHEDULE]: {
+    buttonText: null,
+    buttonIcon: null,
+    buttonClassName: '',
+    helpText: '需要協助？',
+    helpLinkText: '申請退款',
+    statusMessage: '排播時間已設定，正在等待廣告播出。',
+  },
+  [ORDER_STATUS.BROADCASTED]: {
+    buttonText: null,
+    buttonIcon: null,
+    buttonClassName: '',
+    helpText: '需要協助？',
+    helpLinkText: '申請退款',
+    statusMessage: '廣告已成功播出。',
+  },
+  [ORDER_STATUS.PENDING_BROADCAST_DATE]: {
+    buttonText: '設定排播日期',
+    buttonIcon: <EditIcon />,
+    buttonClassName: styles.primaryButton,
+    helpText: '需要協助？',
+    helpLinkText: '申請退款',
+    statusMessage: null,
+  },
+  [ORDER_STATUS.PENDING_CONFIRMATION]: {
+    buttonText: '確認',
+    buttonIcon: <DoneWithCircleIcon />,
+    buttonClassName: styles.primaryButton,
+    helpText: '需要協助？',
+    helpLinkText: '申請退款',
+    statusMessage: null,
+    secondaryButton: {
+      text: '提出修改',
+      icon: <EditIcon />,
+      className: styles.secondaryButton,
+    },
+  },
+  [ORDER_STATUS.CANCELLED]: {
+    buttonText: null,
+    buttonIcon: null,
+    buttonClassName: '',
+    helpText: '需要協助？',
+    helpLinkText: '申請退款',
+    statusMessage: '本訂單已作廢。',
+  },
+  [ORDER_STATUS.TRANSFERRED]: {
+    buttonText: null,
+    buttonIcon: null,
+    buttonClassName: '',
+    helpText: '需要協助？',
+    helpLinkText: '申請退款',
+    statusMessage: '此訂單已轉移至新訂單，請到新訂單進行操作。',
+  },
+  [ORDER_STATUS.PENDING_QUOTE_CONFIRMATION]: {
+    buttonText: null,
+    buttonIcon: null,
+    buttonClassName: '',
+    helpText: '需要協助？',
+    helpLinkText: '申請退款',
+    statusMessage: '請至信箱確認修改報價並完成付款，以繼續製作廣告。',
+  },
+  [ORDER_STATUS.MODIFICATION_REQUEST]: {
+    buttonText: null,
+    buttonIcon: null,
+    buttonClassName: '',
+    helpText: '需要協助？',
+    helpLinkText: '申請退款',
+    statusMessage: '修改要求已提出，等待業務回應。',
+  },
 }
 
 export function OrderActions({ order, className = '' }: OrderActionsProps) {
@@ -62,123 +189,8 @@ export function OrderActions({ order, className = '' }: OrderActionsProps) {
     // 跳轉到修改頁面
   }
 
-  const styles = {
-    container: 'rounded-lg border border-gray-3 bg-white p-6',
-    title: 'text-h4 mb-4 font-semibold text-text-primary',
-    buttonContainer: 'space-y-3',
-    primaryButton: 'bg-blue-6 text-white hover:bg-blue-7',
-    secondaryButton: 'border-gray-3 text-text-secondary hover:bg-gray-1',
-    statusMessage:
-      'font-sans text-sm leading-normal font-normal text-text-secondary',
-    helpContainer:
-      'flex w-full items-start self-stretch rounded-[10px] border border-[var(--color-border-default)] border-gray-3 bg-[var(--color-surface-tertiary)] p-[13px] font-sans text-sm font-medium text-text-secondary',
-    helpText: 'min-w-fit',
-    helpLink:
-      'text-caption1 font-medium text-text-secondary underline hover:text-text-primary',
-  }
-
-  const getActionContent = () => {
-    switch (order.status) {
-      case ORDER_STATUS.PENDING_UPLOAD:
-        return {
-          buttonText: '上傳素材',
-          buttonIcon: <UploadIcon />,
-          buttonClassName: 'bg-blue-6 text-white hover:bg-blue-7',
-          helpText: '需要協助？',
-          helpLinkText: '申請退款',
-          statusMessage: null,
-        }
-      case ORDER_STATUS.MATERIAL_UPLOADED:
-      case ORDER_STATUS.VIDEO_PRODUCTION:
-        return {
-          buttonText: null,
-          buttonIcon: null,
-          buttonClassName: '',
-          helpText: '需要協助？',
-          helpLinkText: '申請退款',
-          statusMessage: '請等待業務確認素材，如沒問題便會繼續製作影片。',
-        }
-      case ORDER_STATUS.PENDING_SCHEDULE:
-        return {
-          buttonText: null,
-          buttonIcon: null,
-          buttonClassName: '',
-          helpText: '需要協助？',
-          helpLinkText: '申請退款',
-          statusMessage: '排播時間已設定，正在等待廣告播出。',
-        }
-      case ORDER_STATUS.BROADCASTED:
-        return {
-          buttonText: null,
-          buttonIcon: null,
-          buttonClassName: '',
-          helpText: '需要協助？',
-          helpLinkText: '申請退款',
-          statusMessage: '廣告已成功播出。',
-        }
-      case ORDER_STATUS.PENDING_BROADCAST_DATE:
-        return {
-          buttonText: '設定排播日期',
-          buttonIcon: <EditIcon />,
-          buttonClassName: styles.primaryButton,
-          helpText: '需要協助？',
-          helpLinkText: '申請退款',
-          statusMessage: null,
-        }
-      case ORDER_STATUS.PENDING_CONFIRMATION:
-        return {
-          buttonText: '確認',
-          buttonIcon: <DoneWithCircleIcon />,
-          buttonClassName: styles.primaryButton,
-          helpText: '需要協助？',
-          helpLinkText: '申請退款',
-          statusMessage: null,
-          secondaryButton: {
-            text: '提出修改',
-            icon: <EditIcon />,
-            className: styles.secondaryButton,
-          },
-        }
-      case ORDER_STATUS.CANCELLED:
-        return {
-          buttonText: null,
-          buttonIcon: null,
-          buttonClassName: '',
-          helpText: '需要協助？',
-          helpLinkText: '申請退款',
-          statusMessage: '本訂單已作廢。',
-        }
-      case ORDER_STATUS.TRANSFERRED:
-        return {
-          buttonText: null,
-          buttonIcon: null,
-          buttonClassName: '',
-          helpText: '需要協助？',
-          helpLinkText: '申請退款',
-          statusMessage: '此訂單已轉移至新訂單，請到新訂單進行操作。',
-        }
-      case ORDER_STATUS.PENDING_QUOTE_CONFIRMATION:
-        return {
-          buttonText: null,
-          buttonIcon: null,
-          buttonClassName: '',
-          helpText: '需要協助？',
-          helpLinkText: '申請退款',
-          statusMessage: '請至信箱確認修改報價並完成付款，以繼續製作廣告。',
-        }
-      default:
-        return {
-          buttonText: '上傳素材',
-          buttonIcon: <UploadIcon />,
-          buttonClassName: styles.primaryButton,
-          helpText: '需要協助？',
-          helpLinkText: '申請退款',
-          statusMessage: null,
-        }
-    }
-  }
-
-  const actionContent = getActionContent()
+  const actionContent =
+    ACTION_MAP[order.status] ?? ACTION_MAP[ORDER_STATUS.PENDING_UPLOAD]
 
   return (
     <section className={`${styles.container} ${className}`}>
@@ -230,14 +242,14 @@ export function OrderActions({ order, className = '' }: OrderActionsProps) {
         <div className={styles.helpContainer}>
           <h6 className={styles.helpText}>{actionContent.helpText}</h6>
           {actionContent.helpLinkText && (
-            <a
+            <Link
               className={styles.helpLink}
-              href="#"
+              to="#"
               target="_blank"
               rel="noreferrer"
             >
               {actionContent.helpLinkText}
-            </a>
+            </Link>
           )}
         </div>
       </div>
