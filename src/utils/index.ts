@@ -7,9 +7,14 @@ const OrderStatusUtils = {
   getColors: (status: OrderStatus) => OrderStatusMap[status].colors,
   getAllOptions: () =>
     Object.entries(OrderStatusMap).map(([value, info]) => ({
-      value,
+      value: value as OrderStatus, // 明確轉型為 OrderStatus
       label: info.label,
     })),
+  // 新增 getBadgeVariant 方法
+  getBadgeVariant: (status: OrderStatus) => {
+    // 直接回傳狀態作為 variant，因為 badgeVariants 已經定義了對應的樣式
+    return status
+  },
 }
 
 function filterOrders(
