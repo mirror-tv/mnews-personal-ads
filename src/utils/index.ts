@@ -1,4 +1,4 @@
-import { OrderStatusMap, type OrderStatus } from '../constants'
+import { type OrderStatus } from '../constants/status/orderStatus'
 import { type OrderRecord } from '../mocks/mockData'
 
 const OrderStatusUtils = {
@@ -48,8 +48,9 @@ function getStatusStats(orders: OrderRecord[]) {
 }
 
 // Local exports — domain-related helpers
-export { OrderStatusUtils, filterOrders, getStatusStats }
+export { filterOrders, getStatusStats }
 
 // Re-exports — generic shared utilities
 export * from './cn'
 export * from './devLog'
+export * from './status'

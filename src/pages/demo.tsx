@@ -35,8 +35,9 @@ import {
   TableBody,
   TableCell,
 } from '@/components/ui/table'
-import { OrderStatusUtils } from '@/utils'
+import { type OrderStatus } from '@/constants/status/orderStatus'
 import { cn } from '@/utils'
+import { OrderStatusUtils } from '@/utils/status'
 
 export default function Demo() {
   const [date, setDate] = useState<Date | undefined>(new Date())
@@ -141,8 +142,10 @@ export default function Demo() {
         <h3 className="text-lg font-semibold text-gray-900">狀態顏色預覽</h3>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {OrderStatusUtils.getAllOptions().map(({ value, label }) => {
-            const colors = OrderStatusUtils.getColors(value)
-            const variant = OrderStatusUtils.getBadgeVariant(value)
+            const colors = OrderStatusUtils.getColors(value as OrderStatus)
+            const variant = OrderStatusUtils.getBadgeVariant(
+              value as OrderStatus
+            )
             return (
               <div
                 key={value}
