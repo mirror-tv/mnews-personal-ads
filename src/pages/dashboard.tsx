@@ -1,6 +1,6 @@
-import ArrowRightIcon from '@/assets/icons/arrow-right.svg?react'
 import FileIcon from '@/assets/icons/file.svg?react'
 import UploadIcon from '@/assets/icons/upload.svg?react'
+import StatusCard from '@/components/dashboard/status-card'
 import PageHeader from '@/components/shared/page-header'
 import PageMain from '@/components/shared/page-main'
 import {
@@ -10,7 +10,6 @@ import {
   CardDescription,
   CardContent,
 } from '@/components/ui/card'
-import { cn } from '@/utils'
 
 export default function Dashboard() {
   return (
@@ -30,7 +29,7 @@ export default function Dashboard() {
 
           {/* history Card */}
           <Card className="cursor-pointer items-center justify-center gap-3">
-            <FileIcon />
+            <FileIcon className="text-blue-7" />
             <CardTitle className="flex flex-col items-center gap-1">
               <span>訂單紀錄</span>
               <CardDescription>查看與管理所有訂單</CardDescription>
@@ -85,24 +84,5 @@ export default function Dashboard() {
         </Card>
       </PageMain>
     </>
-  )
-}
-
-type StatusCardProps = {
-  count: number
-  text: string
-  color: string
-  bgColor: string
-}
-
-function StatusCard({ count, text, color, bgColor }: StatusCardProps) {
-  return (
-    <div className={cn('flex flex-col rounded-md p-3', color, bgColor)}>
-      <h2 className="text-h2">{count}</h2>
-      <div className="flex items-center justify-between">
-        <span className={cn('text-Caption1', color)}>{text}</span>
-        <ArrowRightIcon stroke="currentColor" />
-      </div>
-    </div>
   )
 }

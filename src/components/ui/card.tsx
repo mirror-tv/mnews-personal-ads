@@ -1,10 +1,12 @@
-import type { ComponentProps } from 'react'
+import type { ComponentProps, ComponentPropsWithoutRef } from 'react'
+
+import { Slot } from '@radix-ui/react-slot'
 
 import { cn } from '@/utils'
 
-function Card({ className, ...props }: ComponentProps<'div'>) {
+function Card({ className, ...props }: ComponentProps<'section'>) {
   return (
-    <div
+    <section
       data-slot="card"
       className={cn(
         'flex flex-col gap-6 rounded-lg border border-border-default bg-surface-primary p-6 text-card-foreground',
@@ -28,9 +30,15 @@ function CardHeader({ className, ...props }: ComponentProps<'div'>) {
   )
 }
 
-function CardTitle({ className, ...props }: ComponentProps<'div'>) {
+type CardTitleProps = ComponentPropsWithoutRef<'h4'> & {
+  asChild?: boolean
+}
+
+function CardTitle({ asChild, className, ...props }: CardTitleProps) {
+  const Comp = asChild ? Slot : 'h4'
+
   return (
-    <div
+    <Comp
       data-slot="card-title"
       className={cn('text-h4 font-medium', className)}
       {...props}
