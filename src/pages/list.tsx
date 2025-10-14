@@ -7,7 +7,7 @@ import { OrderTable } from '@/components/list/order-table'
 import { SearchAndFilter } from '@/components/list/search-and-filter'
 import { PageHeader } from '@/components/shared/page-header'
 import PageMain from '@/components/shared/page-main'
-import { layout } from '@/constants'
+import { layout } from '@/constants/layout'
 import { mockOrderData } from '@/mocks/mockData'
 import { cn, filterOrders } from '@/utils'
 
