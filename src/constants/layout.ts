@@ -3,9 +3,9 @@ export const layout = {
 }
 
 export const ORDER_STYLES = {
-  pageContainer: 'min-h-screen w-full bg-gray-1',
+  pageContainer: 'min-h-[calc(100vh-64px)] w-full bg-gray-1',
   contentContainer: 'm-auto max-w-[980px]',
-  innerContainer: 'container mx-auto px-4 py-8',
+  innerContainer: 'container mx-auto px-4',
   layoutGrid: 'flex flex-col gap-4 xl:flex-row xl:gap-8',
 
   card: 'rounded-lg border border-gray-3 bg-white p-6',
