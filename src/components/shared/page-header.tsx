@@ -26,7 +26,7 @@ export default function PageHeader({
   return (
     <header
       className={cn(
-        'fixed top-0 flex h-12 w-full items-center bg-surface-primary shadow-sm',
+        'fixed top-0 z-10 flex h-12 w-full items-center bg-surface-primary shadow-sm',
         'md:h-16 md:px-5 md:py-4'
       )}
     >
