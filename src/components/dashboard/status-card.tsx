@@ -16,7 +16,7 @@ export default function StatusCard({
 }: StatusCardProps) {
   return (
     <div className={cn('flex flex-col rounded-md p-3', color, bgColor)}>
-      <h2 className="text-h2">{count}</h2>
+      <h2 className="text-h2 font-bold">{count}</h2>
       <div className="flex items-center justify-between">
         <span className={cn('text-Caption1', color)}>{text}</span>
         <ArrowRightIcon />
