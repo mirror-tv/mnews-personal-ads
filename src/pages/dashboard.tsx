@@ -20,7 +20,7 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
           {/* Upload Card */}
           <Card className="cursor-pointer items-center justify-center gap-3">
-            <UploadIcon />
+            <UploadIcon className="text-blue-7" />
             <CardTitle className="flex flex-col items-center gap-1">
               <span>上傳廣告素材</span>
               <CardDescription>上傳後即可進入製作流程</CardDescription>

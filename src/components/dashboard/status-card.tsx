@@ -19,7 +19,7 @@ export default function StatusCard({
       <h2 className="text-h2">{count}</h2>
       <div className="flex items-center justify-between">
         <span className={cn('text-Caption1', color)}>{text}</span>
-        <ArrowRightIcon stroke="currentColor" />
+        <ArrowRightIcon />
       </div>
     </div>
   )
