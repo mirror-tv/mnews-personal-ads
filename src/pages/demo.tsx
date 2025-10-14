@@ -35,9 +35,8 @@ import {
   TableBody,
   TableCell,
 } from '@/components/ui/table'
-import { type OrderStatus } from '@/constants/status/orderStatus'
-import { cn } from '@/utils'
-import { OrderStatusUtils } from '@/utils/status'
+import { type OrderStatus } from '@/constants'
+import { cn, OrderStatusUtils } from '@/utils'
 
 export default function Demo() {
   const [date, setDate] = useState<Date | undefined>(new Date())
@@ -67,7 +66,7 @@ export default function Demo() {
 
       {/* DatePicker (Popover + Calendar) */}
       <div>
-        <h2 className="text-h3 mb-2 text-text-primary">Pick a Date</h2>
+        <h2 className="mb-2 text-h3 text-text-primary">Pick a Date</h2>
         <Popover>
           <PopoverTrigger asChild>
             <Button
@@ -94,7 +93,7 @@ export default function Demo() {
 
       {/* Table with Badges */}
       <div>
-        <h2 className="text-h3 mb-2 text-text-primary">Order Records</h2>
+        <h2 className="mb-2 text-h3 text-text-primary">Order Records</h2>
         <Table>
           <TableHeader>
             <TableRow>

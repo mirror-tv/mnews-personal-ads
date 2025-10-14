@@ -1,7 +1,4 @@
-import {
-  OrderStatusMap,
-  type OrderStatus,
-} from '../constants/status/orderStatus'
+import { OrderStatusMap, type OrderStatus } from '@/constants'
 
 export const OrderStatusUtils = {
   getLabel: (status: OrderStatus) => OrderStatusMap[status].label,

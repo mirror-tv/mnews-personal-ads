@@ -7,7 +7,7 @@ import { Button } from '../ui/button'
 import ArrowBackIcon from '@/assets/icons/arrow-back.svg?react'
 import logoutSvg from '@/assets/icons/log-out.svg'
 import logoSvg from '@/assets/icons/mnews-logo.svg'
-import { layout } from '@/constants/layout'
+import { layout } from '@/constants'
 import { cn } from '@/utils'
 
 type PageHeaderProps =
@@ -15,7 +15,10 @@ type PageHeaderProps =
   | { variant: 'centered'; title?: never }
   | { variant: 'spread'; title: string }
 
-export function PageHeader({ title, variant = 'default' }: PageHeaderProps) {
+export default function PageHeader({
+  title,
+  variant = 'default',
+}: PageHeaderProps) {
   const isDefault = variant === 'default'
   const isCentered = variant === 'centered'
   const isSpread = variant === 'spread'

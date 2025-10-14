@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 
+import { layout } from '@/constants'
 import { cn } from '@/utils'
 
 type PageMainProps = {
@@ -15,7 +16,8 @@ export default function PageMain({
   return (
     <main
       className={cn(
-        'pt-12 md:pt-16', //offset for fixed header
+        'mx-auto my-0 pt-12 md:pt-16', //offset for fixed header
+        layout.maxWidthResponsive,
         className
       )}
       {...props}
