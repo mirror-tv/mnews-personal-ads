@@ -12,7 +12,6 @@ export function OrderNotFound({ orderId, className = '' }: OrderNotFoundProps) {
   return (
     <div className={`min-h-screen bg-gray-1 ${className}`}>
       <PageHeader title="訂單詳情" />
-
       <div className="container mx-auto max-w-200 px-4 py-8">
         <div className="flex h-[50vh] flex-col items-center justify-center">
           <div className="text-center">

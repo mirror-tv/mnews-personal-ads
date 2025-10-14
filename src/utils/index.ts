@@ -1,4 +1,4 @@
-import { type OrderStatus } from '../constants/status/orderStatus'
+import { type OrderStatus } from '../constants'
 import { type OrderRecord } from '../mocks/mockData'
 
 function filterOrders(
