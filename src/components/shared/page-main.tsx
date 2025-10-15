@@ -16,7 +16,7 @@ export default function PageMain({
   return (
     <main
       className={cn(
-        'mx-auto my-0 pt-12 md:pt-16', //offset for fixed header
+        'mx-auto mt-12 w-full md:mt-16', //offset for fixed header
         layout.maxWidthResponsive,
         className
       )}

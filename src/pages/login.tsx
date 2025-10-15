@@ -122,7 +122,7 @@ export default function Login() {
   return (
     <>
       <PageHeader variant="centered" />
-      <PageMain className="mt-16 flex h-screen justify-center">
+      <PageMain className="flex justify-center py-5 md:my-auto">
         <div className="flex h-fit max-w-[288px] flex-col items-center rounded-xl border border-border-default bg-surface-primary p-4 shadow-lg md:max-w-[448px] md:min-w-[448px] md:p-6">
           {status !== 'OPT' && (
             <MailOrPhoneForm

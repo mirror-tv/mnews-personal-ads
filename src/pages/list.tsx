@@ -26,7 +26,7 @@ export default function List() {
   return (
     <>
       <PageHeader title="訂單紀錄" />
-      <PageMain className="my-5 md:my-10">
+      <PageMain className="py-5 md:py-10">
         <SearchAndFilter
           searchKeyword={searchKeyword}
           onSearchChange={setSearchKeyword}

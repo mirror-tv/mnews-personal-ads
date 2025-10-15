@@ -17,7 +17,7 @@ export default function Dashboard() {
   return (
     <>
       <PageHeader variant="spread" title="鏡新聞個人廣告系統" />
-      <PageMain className="my-5 grid grid-rows-[auto_1fr] gap-4 md:my-10 md:gap-10">
+      <PageMain className="grid grid-rows-[auto_1fr] gap-4 py-5 md:gap-10 md:py-10">
         {/* --- Top two cards --- */}
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
           {/* Upload Card */}

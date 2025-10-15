@@ -20,7 +20,7 @@ export default function App() {
   const [open, setOpen] = useState(true)
 
   return (
-    <div className="relative min-h-screen bg-surface-secondary">
+    <div className="relative flex min-h-screen flex-col bg-surface-secondary">
       {isLocalOrDev && open && (
         <nav className="fixed bottom-0 flex w-full shrink-0 justify-center gap-4 bg-gray-800 p-2 text-white">
           <span className="flex items-center text-sm font-semibold tracking-wide whitespace-nowrap uppercase opacity-80">

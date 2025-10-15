@@ -33,7 +33,7 @@ export default function Order() {
   return (
     <div className={ORDER_STYLES.pageContainer}>
       <PageHeader title="訂單詳情" variant="default" />
-      <PageMain className="my-5 md:my-10">
+      <PageMain className="py-5 md:py-10">
         <div className={ORDER_STYLES.contentContainer}>
           <div className={ORDER_STYLES.innerContainer}>
             <div className={ORDER_STYLES.layoutGrid}>
