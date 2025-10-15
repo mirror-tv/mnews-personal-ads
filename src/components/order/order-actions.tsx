@@ -16,7 +16,7 @@ type OrderActionsProps = {
 
 const styles = {
   container: 'rounded-lg border border-gray-3 bg-white p-6',
-  title: 'text-h4 mb-4 font-semibold text-text-primary',
+  title: 'typography-h4 mb-4 font-semibold text-text-primary',
   buttonContainer: 'space-y-3',
   primaryButton: 'bg-blue-6 text-white hover:bg-blue-7',
   secondaryButton: 'border-gray-3 text-text-secondary hover:bg-gray-1',
@@ -26,7 +26,7 @@ const styles = {
     'flex w-full items-start self-stretch rounded-[10px] border border-[var(--color-border-default)] border-gray-3 bg-[var(--color-surface-tertiary)] p-[13px] font-sans text-sm font-medium text-text-secondary',
   helpText: 'min-w-fit',
   helpLink:
-    'text-caption1 font-medium text-text-secondary underline hover:text-text-primary',
+    'typography-caption1 font-medium text-text-secondary underline hover:text-text-primary',
 }
 
 type ActionConfig = {

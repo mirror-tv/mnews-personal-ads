@@ -53,7 +53,7 @@ function CardTitle({ asChild, className, ...props }: CardTitleProps) {
   return (
     <Comp
       data-slot="card-title"
-      className={cn('text-h4 font-medium', className)}
+      className={cn('typography-h4 font-medium', className)}
       {...props}
     />
   )

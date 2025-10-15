@@ -25,10 +25,10 @@ export function OrderGroup({
       {/* Status header */}
       <div className="flex items-center gap-3">
         <div className={`h-3 w-3 rounded-full ${statusConfig.colors.dot}`} />
-        <h2 className="text-h4 font-semibold text-gray-9">
-          {statusConfig.label}
-        </h2>
-        <span className="text-caption1 text-gray-6">({orders.length})</span>
+        <h4 className="text-gray-9">{statusConfig.label}</h4>
+        <span className="typography-caption1 text-gray-6">
+          ({orders.length})
+        </span>
       </div>
 
       {/* Orders grid - responsive */}

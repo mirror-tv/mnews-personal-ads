@@ -50,13 +50,13 @@ export function TestModal({
       </DialogTrigger>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-h4 font-semibold text-gray-9">
+          <DialogTitle className="typography-h4 font-semibold text-gray-9">
             選擇測試訂單
           </DialogTitle>
         </DialogHeader>
 
         <div className="space-y-3">
-          <p className="text-caption1 text-gray-6">
+          <p className="typography-caption1 text-gray-6">
             選擇要查看的訂單詳情，系統會顯示該訂單的詳細資訊
           </p>
 
@@ -81,14 +81,14 @@ export function TestModal({
                     />
                     <div>
                       <p
-                        className={`text-caption1 font-medium ${
+                        className={`typography-caption1 font-medium ${
                           isSelected ? 'text-blue-9' : 'text-gray-9'
                         }`}
                       >
                         {order.productName}
                       </p>
                       <p
-                        className={`text-caption2 ${
+                        className={`typography-caption2 ${
                           isSelected ? 'text-blue-7' : 'text-gray-6'
                         }`}
                       >

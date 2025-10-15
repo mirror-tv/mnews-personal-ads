@@ -5,9 +5,7 @@ type ProductionPreviewProps = {
 export function ProductionPreview({ className = '' }: ProductionPreviewProps) {
   return (
     <div className={className}>
-      <h5 className="mb-4 font-sans text-base leading-normal font-medium text-text-primary">
-        製作成品預覽
-      </h5>
+      <h5 className="mb-4 text-text-primary">製作成品預覽</h5>
       <div>
         <h6 className="font-sans text-sm leading-normal font-medium text-text-secondary">
           影片截圖

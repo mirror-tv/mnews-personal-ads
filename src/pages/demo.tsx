@@ -43,9 +43,7 @@ export default function Demo() {
 
   return (
     <div className="min-h-screen space-y-8 bg-surface-secondary p-8">
-      <h1 className="text-h2 font-bold text-text-primary">
-        Shadcn UI Showcase
-      </h1>
+      <h2 className="text-text-primary">Shadcn UI Showcase</h2>
 
       {/* Search & Filter */}
       <div className="flex items-center gap-4">
@@ -66,7 +64,7 @@ export default function Demo() {
 
       {/* DatePicker (Popover + Calendar) */}
       <div>
-        <h2 className="mb-2 text-h3 text-text-primary">Pick a Date</h2>
+        <h3 className="mb-2 text-text-primary">Pick a Date</h3>
         <Popover>
           <PopoverTrigger asChild>
             <Button
@@ -93,7 +91,7 @@ export default function Demo() {
 
       {/* Table with Badges */}
       <div>
-        <h2 className="mb-2 text-h3 text-text-primary">Order Records</h2>
+        <h3 className="mb-2 text-text-primary">Order Records</h3>
         <Table>
           <TableHeader>
             <TableRow>
@@ -138,7 +136,7 @@ export default function Demo() {
 
       {/* Status Color Preview */}
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-gray-900">狀態顏色預覽</h3>
+        <h4 className="text-gray-900">狀態顏色預覽</h4>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {OrderStatusUtils.getAllOptions().map(({ value, label }) => {
             const colors = OrderStatusUtils.getColors(value as OrderStatus)

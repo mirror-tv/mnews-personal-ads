@@ -15,10 +15,8 @@ export function OrderNotFound({ orderId, className = '' }: OrderNotFoundProps) {
       <div className="container mx-auto max-w-200 px-4 py-8">
         <div className="flex h-[50vh] flex-col items-center justify-center">
           <div className="text-center">
-            <h1 className="mb-4 text-h2 font-semibold text-gray-9">
-              訂單不存在
-            </h1>
-            <p className="mb-6 text-body2 text-gray-6">
+            <h2 className="mb-4 text-gray-9">訂單不存在</h2>
+            <p className="typography-body2 mb-6 text-gray-6">
               {orderId
                 ? `找不到指定的訂單 ID: ${orderId}`
                 : '請選擇一個有效的訂單'}

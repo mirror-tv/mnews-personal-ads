@@ -35,7 +35,7 @@ export default function List() {
         />
 
         <div className="mb-6 flex flex-col gap-6 rounded-xl border border-border-default bg-surface-primary p-6">
-          <h4 className="text-lg font-medium text-text-primary">
+          <h4 className="text-text-primary">
             訂單列表 ({filteredOrders.length}筆記錄)
           </h4>
 

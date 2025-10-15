@@ -3,7 +3,7 @@ import { env } from '@/config/env'
 export default function LocalPreview() {
   return (
     <main className="flex h-screen flex-col items-center justify-center bg-gray-100 text-gray-800">
-      <h1 className="mb-4 text-3xl font-bold">👋 Welcome Developer</h1>
+      <h1 className="mb-4">👋 Welcome Developer</h1>
 
       <p className="text-lg text-gray-600">
         This is a <strong>local or development</strong> preview page for
