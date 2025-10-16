@@ -9,9 +9,7 @@ type RelatedDocumentsProps = {
 export function RelatedDocuments({ className = '' }: RelatedDocumentsProps) {
   return (
     <div className={`${className}`}>
-      <h5 className="mb-3 font-sans text-sm leading-normal font-medium text-text-secondary">
-        相關文件
-      </h5>
+      <h5 className="mb-3 text-text-secondary">相關文件</h5>
       <div className="space-y-3">
         <div className="flex items-center justify-between self-stretch rounded-[12px] border border-gray-3 bg-white p-[12px]">
           <div className="flex items-center gap-3">
@@ -22,7 +20,7 @@ export function RelatedDocuments({ className = '' }: RelatedDocumentsProps) {
               <p className="font-sans text-base leading-normal font-medium text-text-primary">
                 廣告素材規格書.pdf
               </p>
-              <p className="text-caption2 text-text-tertiary">
+              <p className="typography-caption2 text-text-tertiary">
                 236 KB • PDF文件
               </p>
             </div>

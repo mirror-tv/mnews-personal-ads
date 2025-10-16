@@ -23,21 +23,19 @@ export function OrderCard({ order, className = '' }: OrderCardProps) {
       {/* Order header */}
       <div className="mb-3 flex items-start justify-between">
         <div className="flex-1">
-          <h3 className="mb-1 text-h5 font-semibold text-gray-9">
-            {order.productName}
-          </h3>
-          <p className="text-caption1 text-gray-6">{order.orderNumber}</p>
+          <h5 className="mb-1 text-gray-9">{order.productName}</h5>
+          <p className="typography-caption1 text-gray-6">{order.orderNumber}</p>
         </div>
         <StatusBadge status={order.status} />
       </div>
 
       {/* Order details */}
       <div className="space-y-2">
-        <div className="flex items-center justify-between text-caption1">
+        <div className="typography-caption1 flex items-center justify-between">
           <span className="text-gray-6">播出日期</span>
           <span className="text-gray-8">{order.broadcastDate}</span>
         </div>
-        <div className="flex items-center justify-between text-caption1">
+        <div className="typography-caption1 flex items-center justify-between">
           <span className="text-gray-6">最後更新</span>
           <span className="text-gray-8">{order.lastUpdated}</span>
         </div>
@@ -46,10 +44,10 @@ export function OrderCard({ order, className = '' }: OrderCardProps) {
       {/* Action buttons for certain statuses */}
       {order.status === 'pending_confirmation' && (
         <div className="mt-4 flex gap-2">
-          <button className="flex-1 rounded-md bg-red-6 px-3 py-2 text-caption1 text-white transition-colors hover:bg-red-7">
+          <button className="typography-caption1 flex-1 rounded-md bg-red-6 px-3 py-2 text-white transition-colors hover:bg-red-7">
             確認
           </button>
-          <button className="flex-1 rounded-md border border-gray-3 px-3 py-2 text-caption1 text-gray-8 transition-colors hover:bg-gray-1">
+          <button className="typography-caption1 flex-1 rounded-md border border-gray-3 px-3 py-2 text-gray-8 transition-colors hover:bg-gray-1">
             修改
           </button>
         </div>
@@ -58,7 +56,7 @@ export function OrderCard({ order, className = '' }: OrderCardProps) {
       {order.status === 'pending_quote_confirmation' && (
         <div className="mt-4">
           <div className="rounded-md bg-red-1 p-3">
-            <p className="text-caption1 font-medium text-red-9">
+            <p className="typography-caption1 font-medium text-red-9">
               修改報價：NT$ 15,000
             </p>
           </div>
@@ -89,7 +87,7 @@ export function OrderCard({ order, className = '' }: OrderCardProps) {
                   />
                 </svg>
               </div>
-              <p className="text-caption2 text-gray-6">預覽圖</p>
+              <p className="typography-caption2 text-gray-6">預覽圖</p>
             </div>
           </div>
         </div>

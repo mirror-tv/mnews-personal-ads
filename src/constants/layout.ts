@@ -9,7 +9,7 @@ export const ORDER_STYLES = {
   layoutGrid: 'flex flex-col gap-4 xl:flex-row xl:gap-8',
 
   card: 'rounded-lg border border-gray-3 bg-white p-6',
-  cardTitle: 'text-h4 mb-4 font-semibold text-text-primary',
+  cardTitle: 'typography-h4 mb-4 font-semibold text-text-primary',
 
   primaryButton: 'bg-blue-6 text-white hover:bg-blue-7',
   secondaryButton: 'border-gray-3 text-text-secondary hover:bg-gray-1',

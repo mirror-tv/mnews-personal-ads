@@ -29,10 +29,8 @@ export default function MailOrPhoneForm({
 }: MailOrPhoneFormProps) {
   return (
     <>
-      <h3 className="text-center font-sans text-xl leading-normal font-medium text-text-primary">
-        鏡新聞個人廣告系統
-      </h3>
-      <p className="text-center font-sans text-sm leading-normal font-normal text-text-secondary">
+      <h3 className="text-center text-text-primary">鏡新聞個人廣告系統</h3>
+      <p className="text-center text-text-secondary">
         請輸入您註冊應援科技使用的電子信箱／手機號碼
       </p>
 

@@ -6,6 +6,8 @@ import { Button } from './components/ui/button'
 import { env } from './config/env'
 import Dashboard from './pages/dashboard'
 import Demo from './pages/demo'
+import EditRequest from './pages/edit-request'
+import EditSchedule from './pages/edit-schedule'
 import List from './pages/list'
 import LocalPreview from './pages/local-preview'
 import Login from './pages/login'
@@ -18,38 +20,43 @@ export default function App() {
   const [open, setOpen] = useState(true)
 
   return (
-    <div className="relative min-h-screen bg-surface-secondary">
+    <div className="relative flex min-h-screen flex-col bg-surface-secondary">
       {isLocalOrDev && open && (
-        <nav className="fixed bottom-0 flex w-full justify-center gap-4 bg-gray-800 p-4 text-white">
-          <span className="absolute top-5 left-2 text-sm font-semibold tracking-wide uppercase opacity-80">
+        <nav className="fixed bottom-0 flex w-full shrink-0 justify-center gap-4 bg-gray-800 p-2 text-white">
+          <span className="flex items-center text-sm font-semibold tracking-wide whitespace-nowrap uppercase opacity-80">
             Dev Navigation
           </span>
-          <Link to={'/'} className="hover:text-blue-400">
-            Preview
-          </Link>
-          <Link to="/demo" className="hover:text-green-400">
-            Demo
-          </Link>
-          <span className="font-extrabold">|</span>
-          <Link to="/login" className="hover:text-purple-400">
-            Login
-          </Link>
-          <Link to="/dashboard" className="hover:text-indigo-400">
-            Dashboard
-          </Link>
-          <Link to="/upload" className="hover:text-pink-400">
-            Upload
-          </Link>
-          <Link to="/list" className="hover:text-yellow-400">
-            List
-          </Link>
-          <Link to="/order" className="hover:text-red-400">
-            Order
-          </Link>
-          <Button
-            className="absolute top-2.5 right-8"
-            onClick={() => setOpen(false)}
-          >
+          <div className="flex w-full flex-wrap items-center justify-center gap-2">
+            <Link to={'/'} className="hover:text-blue-400">
+              Preview
+            </Link>
+            <Link to="/demo" className="hover:text-green-400">
+              Demo
+            </Link>
+            <span className="font-extrabold">|</span>
+            <Link to="/login" className="hover:text-purple-400">
+              Login
+            </Link>
+            <Link to="/dashboard" className="hover:text-indigo-400">
+              Dashboard
+            </Link>
+            <Link to="/upload" className="hover:text-pink-400">
+              Upload
+            </Link>
+            <Link to="/list" className="hover:text-yellow-400">
+              List
+            </Link>
+            <Link to="/order" className="hover:text-red-400">
+              Order
+            </Link>
+            <Link to="/edit-request" className="hover:text-red-400">
+              Edit-Request
+            </Link>
+            <Link to="/edit-schedule" className="hover:text-red-400">
+              Edit-Schedule
+            </Link>
+          </div>
+          <Button className="flex items-center" onClick={() => setOpen(false)}>
             close
           </Button>
         </nav>
@@ -71,6 +78,8 @@ export default function App() {
         <Route path="/upload" element={<Upload />} />
         <Route path="/list" element={<List />} />
         <Route path="/order" element={<Order />} />
+        <Route path="/edit-request" element={<EditRequest />} />
+        <Route path="/edit-schedule" element={<EditSchedule />} />
         <Route path="/order/:id" element={<Order />} />≈
       </Routes>
     </div>

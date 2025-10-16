@@ -11,10 +11,7 @@ export function EmptyState({ searchKeyword, orderStatus }: EmptyStateProps) {
   return (
     <div className="py-12 text-center">
       <FileIcon className="mx-auto h-12 w-12 text-text-tertiary" />
-
-      <h4 className="mt-4 text-sm font-medium text-text-primary">
-        暫無訂單資料
-      </h4>
+      <h6 className="mt-4 text-text-primary">暫無訂單資料</h6>
       <p className="mt-2 text-sm text-text-secondary">
         搜尋條件：{searchKeyword ? `"${searchKeyword}"` : '無關鍵字'}
         {orderStatus !== 'all' &&

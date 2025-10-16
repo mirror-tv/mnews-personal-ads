@@ -6,17 +6,15 @@ type OrderDetailsProps = {
   className?: string
 }
 
-const labelStyles = 'text-caption1 text-text-secondary'
-const valueStyles = 'text-body2 text-text-primary'
+const labelStyles = 'typography-caption1 text-text-secondary'
+const valueStyles = 'typography-body2 text-text-primary'
 
 export function OrderDetails({ order, className = '' }: OrderDetailsProps) {
   return (
     <section
       className={`rounded-lg border border-gray-3 bg-white p-6 ${className}`}
     >
-      <h5 className="mb-4 text-h4 font-semibold text-text-primary">
-        {orderLabels.orderData}
-      </h5>
+      <h4 className="mb-4 text-text-primary">{orderLabels.orderData}</h4>
       <div className="space-y-3">
         <div>
           <label className={labelStyles}>{orderLabels.adName}</label>

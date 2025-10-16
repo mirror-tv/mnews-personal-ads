@@ -28,7 +28,7 @@ export function SearchAndFilter({
 
   return (
     <div className="mx-auto mb-6 flex flex-col items-start gap-6 rounded-xl border border-border-default bg-surface-primary p-6">
-      <h2 className="text-lg font-medium text-text-primary">搜尋與篩選</h2>
+      <h4 className="text-text-primary">搜尋與篩選</h4>
 
       <div className="flex w-full flex-col gap-4 md:flex-row">
         <div className="flex-1">
