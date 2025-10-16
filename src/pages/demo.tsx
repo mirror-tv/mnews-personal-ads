@@ -35,7 +35,7 @@ import {
   TableBody,
   TableCell,
 } from '@/components/ui/table'
-import { type OrderStatus } from '@/constants'
+import { type OrderStatus, ORDER_STATUS } from '@/constants'
 import { cn, OrderStatusUtils } from '@/utils'
 
 export default function Demo() {
@@ -54,7 +54,9 @@ export default function Demo() {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">全部狀態</SelectItem>
-            <SelectItem value="pending_upload">待上傳素材</SelectItem>
+            <SelectItem value={ORDER_STATUS.PENDING_UPLOAD}>
+              待上傳素材
+            </SelectItem>
             <SelectItem value="pending_production">影片製作中</SelectItem>
             <SelectItem value="available">可瀏覽</SelectItem>
           </SelectContent>
@@ -107,7 +109,7 @@ export default function Demo() {
               <TableCell>Summer Promo</TableCell>
               <TableCell>
                 <Badge variant="pending-upload">
-                  {OrderStatusUtils.getLabel('pending_upload')}
+                  {OrderStatusUtils.getLabel(ORDER_STATUS.PENDING_UPLOAD)}
                 </Badge>
               </TableCell>
               <TableCell>

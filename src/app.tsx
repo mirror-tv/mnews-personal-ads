@@ -6,8 +6,6 @@ import { Button } from './components/ui/button'
 import { env } from './config/env'
 import Dashboard from './pages/dashboard'
 import Demo from './pages/demo'
-import EditRequest from './pages/edit-request'
-import EditSchedule from './pages/edit-schedule'
 import List from './pages/list'
 import LocalPreview from './pages/local-preview'
 import Login from './pages/login'
@@ -49,12 +47,6 @@ export default function App() {
             <Link to="/order" className="hover:text-red-400">
               Order
             </Link>
-            <Link to="/edit-request" className="hover:text-red-400">
-              Edit-Request
-            </Link>
-            <Link to="/edit-schedule" className="hover:text-red-400">
-              Edit-Schedule
-            </Link>
           </div>
           <Button className="flex items-center" onClick={() => setOpen(false)}>
             close
@@ -78,9 +70,6 @@ export default function App() {
         <Route path="/upload" element={<Upload />} />
         <Route path="/list" element={<List />} />
         <Route path="/order" element={<Order />} />
-        <Route path="/edit-request" element={<EditRequest />} />
-        <Route path="/edit-schedule" element={<EditSchedule />} />
-        <Route path="/order/:id" element={<Order />} />≈
       </Routes>
     </div>
   )
