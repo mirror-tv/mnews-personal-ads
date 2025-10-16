@@ -8,14 +8,14 @@ export type StatusRoute =
   | 'transferred'
 
 export const ORDER_STATUS = {
-  PENDING_UPLOAD: 'pending_upload',
-  MATERIAL_UPLOADED: 'material_uploaded',
-  VIDEO_PRODUCTION: 'video_production',
-  PENDING_CONFIRMATION: 'pending_confirmation',
-  PENDING_SCHEDULE: 'pending_schedule',
-  BROADCASTED: 'broadcasted',
-  MODIFICATION_REQUEST: 'modification_request',
-  PENDING_QUOTE_CONFIRMATION: 'pending_quote_confirmation',
+  PENDING_UPLOAD: 'paid',
+  MATERIAL_UPLOADED: 'file_uploaded',
+  VIDEO_PRODUCTION: 'material_confirmed',
+  PENDING_CONFIRMATION: 'material_updated',
+  PENDING_SCHEDULE: 'produced',
+  BROADCASTED: 'video_confirmed',
+  MODIFICATION_REQUEST: 'scheduled',
+  PENDING_QUOTE_CONFIRMATION: 'broadcasted',
   TRANSFERRED: 'transferred',
   PENDING_BROADCAST_DATE: 'pending_broadcast_date',
   CANCELLED: 'cancelled',

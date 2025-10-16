@@ -1,3 +1,6 @@
+import { useState } from 'react'
+import { useEffect } from 'react'
+
 import { Link } from 'react-router-dom'
 
 import FileIcon from '@/assets/icons/file.svg?react'
@@ -12,8 +15,58 @@ import {
   CardDescription,
   CardContent,
 } from '@/components/ui/card'
+import { OrderStatusMap } from '@/constants'
+import { getOrdersStatusStatsQuery } from '@/graphql/query/orders'
+import { queryData } from '@/utils/graphql'
+
+type Order = {
+  id: string
+  state: string
+  updatedAt?: string
+  createdAt: string
+}
+type StatusStats = { status: string; count: number }
 
 export default function Dashboard() {
+  const [statusStats, setStatusStats] = useState<StatusStats[]>([])
+
+  const getStatusStats = (orders: Order[]) => {
+    const sortedOrders = [...orders].sort((a, b) => {
+      const timeA = a.updatedAt || a.createdAt
+      const timeB = b.updatedAt || b.createdAt
+      return new Date(timeB).getTime() - new Date(timeA).getTime()
+    })
+
+    const statusOrder: { status: string; count: number }[] = []
+
+    sortedOrders.forEach((order) => {
+      const existing = statusOrder.find((item) => item.status === order.state)
+      if (!existing) {
+        statusOrder.push({ status: order.state, count: 1 })
+      } else {
+        existing.count++
+      }
+    })
+
+    return statusOrder
+  }
+
+  const fetchOrdersStatusStats = async () => {
+    try {
+      const ordersStatusStats = await queryData<{
+        orders: Order[]
+      }>(getOrdersStatusStatsQuery, {})
+
+      setStatusStats(getStatusStats(ordersStatusStats.orders))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  useEffect(() => {
+    fetchOrdersStatusStats()
+  }, [])
+
   return (
     <>
       <PageHeader variant="spread" title="鏡新聞個人廣告系統" />
@@ -50,42 +103,23 @@ export default function Dashboard() {
           </CardHeader>
 
           <CardContent className="grid grid-cols-1 gap-2 md:grid-cols-4 md:gap-4 xl:grid-cols-6">
-            <StatusCard
-              count={2}
-              text="待上傳素材"
-              color="text-gray-6"
-              bgColor="bg-gray-2"
-            />
-            <StatusCard
-              count={1}
-              text="素材已上傳"
-              color="text-yellow-7"
-              bgColor="bg-yellow-1"
-            />
-            <StatusCard
-              count={1}
-              text="影片製作中"
-              color="text-yellow-7"
-              bgColor="bg-yellow-1"
-            />
-            <StatusCard
-              count={1}
-              text="待確認"
-              color="text-red-7"
-              bgColor="bg-red-1"
-            />
-            <StatusCard
-              count={1}
-              text="等待排播"
-              color="text-blue-7"
-              bgColor="bg-blue-1"
-            />
-            <StatusCard
-              count={1}
-              text="已播出"
-              color="text-green-7"
-              bgColor="bg-green-1"
-            />
+            {statusStats.map(({ status, count }) => {
+              const config =
+                OrderStatusMap[status as keyof typeof OrderStatusMap]
+              if (!config) return null
+
+              return (
+                <Link key={status} to={`/list?status=${status}`}>
+                  <StatusCard
+                    name={status}
+                    count={count}
+                    text={config.label}
+                    color={config.colors.text}
+                    bgColor={config.colors.bg}
+                  />
+                </Link>
+              )
+            })}
           </CardContent>
         </Card>
       </PageMain>

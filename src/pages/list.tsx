@@ -1,6 +1,6 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 
 import { EmptyState } from '@/components/list/empty-state'
 import { OrderTable } from '@/components/list/order-table'
@@ -12,12 +12,20 @@ import { filterOrders } from '@/utils'
 
 export default function List() {
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+  const status = searchParams.get('status')
   const [searchKeyword, setSearchKeyword] = useState('')
   const [orderStatus, setOrderStatus] = useState<string>('all')
 
   const filteredOrders = useMemo(() => {
     return filterOrders(mockOrderData, searchKeyword, orderStatus)
   }, [searchKeyword, orderStatus])
+
+  useEffect(() => {
+    if (status) {
+      setOrderStatus(status)
+    }
+  }, [status])
 
   const handleViewOrder = (orderId: string) => {
     navigate(`/order/${orderId}`)
