@@ -70,7 +70,6 @@ export default function App() {
         <Route path="/upload" element={<Upload />} />
         <Route path="/list" element={<List />} />
         <Route path="/order" element={<Order />} />
-        <Route path="/order/:id" element={<Order />} />
       </Routes>
     </div>
   )

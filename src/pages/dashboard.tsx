@@ -111,7 +111,6 @@ export default function Dashboard() {
               return (
                 <Link key={status} to={`/list?status=${status}`}>
                   <StatusCard
-                    name={status}
                     count={count}
                     text={config.label}
                     color={config.colors.text}

@@ -153,7 +153,6 @@ export function OrderActions({ order, className = '' }: OrderActionsProps) {
 
       alert('上傳完成，進入下一個階段')
       // 可以 trigger parent component 的 cb 來更新訂單狀態
-      // onStatusChange?.('material_uploaded')
     } catch (error) {
       console.error('上傳失敗:', error)
     } finally {
@@ -171,7 +170,6 @@ export function OrderActions({ order, className = '' }: OrderActionsProps) {
 
       alert('確認完成，進入下一個階段')
       // 可以 trigger parent component 的 cb 來更新訂單狀態
-      // onStatusChange?.('pending_schedule')
     } catch (error) {
       console.error('確認失敗:', error)
     } finally {
