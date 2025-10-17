@@ -1,7 +1,7 @@
 import { env } from '@/config/env'
 
 export function devLog(value: unknown, name?: string): void {
-  if (['dev', 'local'].includes(env.ENV)) return // only runs in vite dev/local mode
+  if (!['dev', 'local'].includes(env.ENV)) return // only runs in vite dev/local mode
 
   const type = typeof value
   const date = new Date()

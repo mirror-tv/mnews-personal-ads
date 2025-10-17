@@ -53,7 +53,7 @@ export default function PageHeader({
           <>
             <Logo className="hidden md:block" />
             <Title>{title}</Title>
-            <Button variant="outline">
+            <Button variant="outline" intent="secondary">
               <img src={logoutSvg as unknown as string} alt="log out" />
               登出
             </Button>
