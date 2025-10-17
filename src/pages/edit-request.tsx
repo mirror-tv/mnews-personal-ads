@@ -1,19 +1,12 @@
 import TextFormatIcon from '@/assets/icons/text-format.svg?react'
 import TextIcon from '@/assets/icons/text.svg?react'
 import TriangleExclamationIcon from '@/assets/icons/triangle-exclamation.svg?react'
+import { EditPageLayout } from '@/components/edit/edit-page-layout'
 import { Instructions } from '@/components/shared/instructions'
-import PageHeader from '@/components/shared/page-header'
-import PageMain from '@/components/shared/page-main'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardFooter, CardTitle } from '@/components/ui/card'
 import { cn } from '@/utils'
 
-const Mock_Order_Number = 'B7H8M3'
-const Mock_Order_Name = '新年特惠商品'
-const Mock_Order_Date = '2024/12/25-2025/12/31'
-
 const textareaStyle =
-  'w-full resize-none rounded-md bg-gray-2 p-3 placeholder:text-text-tertiary'
+  'w-full resize-none rounded-md bg-gray-2 p-3 placeholder:text-text-tertiary placeholder:text-h6'
 
 const INSTRUCTIONS_INFO = [
   '提出修改要求後，原始排播日期將會作廢',
@@ -22,11 +15,6 @@ const INSTRUCTIONS_INFO = [
 ]
 
 export default function EditRequest() {
-  const orderInfo = [
-    { title: '訂單編號', value: '#' + Mock_Order_Number },
-    { title: '廣告名稱', value: Mock_Order_Name },
-    { title: '排播日期', value: Mock_Order_Date },
-  ]
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
@@ -36,72 +24,47 @@ export default function EditRequest() {
   }
 
   return (
-    <>
-      <PageHeader title="提出修改 " />
-      <PageMain className="space-y-xl py-5 md:space-y-3xl md:py-10 xl:space-y-4xl">
-        {/* order info */}
-        <Card>
-          <CardTitle>訂單資料</CardTitle>
-          <CardContent className="flex flex-col justify-between gap-3 md:flex-row">
-            {orderInfo.map((info) => (
-              <div className="flex flex-col">
-                <h6 className="text-text-secondary">{info.title}</h6>
-                <span className="typography-body2">{info.value}</span>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-        {/* Edit Request Form */}
-        <form onSubmit={handleSubmit}>
-          <Card>
-            <CardTitle>修改資料</CardTitle>
-            <CardContent className="space-y-3xl">
-              <div className="space-y-m">
-                <label
-                  htmlFor="reason"
-                  className="typography-h6 flex items-center gap-1"
-                >
-                  <TextIcon className="text-text-tertiary" />
-                  修改原因
-                </label>
-                <textarea
-                  className={cn(textareaStyle, 'h-12')}
-                  id="reason"
-                  name="reason"
-                  placeholder="例如：文字需要調整"
-                />
-              </div>
-              <div className="space-y-m">
-                <label
-                  htmlFor="details"
-                  className="typography-h6 flex items-center gap-1"
-                >
-                  <TextFormatIcon className="text-text-tertiary" />
-                  修改詳情
-                </label>
-                <textarea
-                  className={cn(textareaStyle, 'h-27')}
-                  id="details"
-                  name="details"
-                  placeholder="請詳細描述您希望調整的地方及期望結果"
-                />
-              </div>
-              <Instructions
-                title="重要提醒"
-                icon={<TriangleExclamationIcon />}
-                wordings={INSTRUCTIONS_INFO}
-                isDot
-              />
-            </CardContent>
-            <CardFooter className="justify-end gap-2">
-              <Button variant="outline" intent="secondary">
-                取消
-              </Button>
-              <Button type="submit">送出修改請求</Button>
-            </CardFooter>
-          </Card>
-        </form>
-      </PageMain>
-    </>
+    <EditPageLayout
+      title="提出修改"
+      onSubmit={handleSubmit}
+      submitButtonName="送出修改請求"
+    >
+      <div className="space-y-m">
+        <label
+          htmlFor="reason"
+          className="typography-h6 flex items-center gap-1"
+        >
+          <TextIcon className="text-text-tertiary" />
+          修改原因
+        </label>
+        <textarea
+          className={cn(textareaStyle, 'h-12')}
+          id="reason"
+          name="reason"
+          placeholder="例如：文字需要調整"
+        />
+      </div>
+      <div className="space-y-m">
+        <label
+          htmlFor="details"
+          className="typography-h6 flex items-center gap-1"
+        >
+          <TextFormatIcon className="text-text-tertiary" />
+          修改詳情
+        </label>
+        <textarea
+          className={cn(textareaStyle, 'h-27')}
+          id="details"
+          name="details"
+          placeholder="請詳細描述您希望調整的地方及期望結果"
+        />
+      </div>
+      <Instructions
+        title="重要提醒"
+        icon={<TriangleExclamationIcon />}
+        wordings={INSTRUCTIONS_INFO}
+        isDot
+      />
+    </EditPageLayout>
   )
 }
