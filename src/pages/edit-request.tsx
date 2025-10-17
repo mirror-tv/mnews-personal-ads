@@ -6,6 +6,7 @@ import PageHeader from '@/components/shared/page-header'
 import PageMain from '@/components/shared/page-main'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardTitle } from '@/components/ui/card'
+import { cn } from '@/utils'
 
 const Mock_Order_Number = 'B7H8M3'
 const Mock_Order_Name = '新年特惠商品'
@@ -26,8 +27,12 @@ export default function EditRequest() {
     { title: '廣告名稱', value: Mock_Order_Name },
     { title: '排播日期', value: Mock_Order_Date },
   ]
-  function handleSubmit() {
-    return () => console.log('submit')
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    const reason = formData.get('reason')
+    const details = formData.get('details')
+    console.log({ reason, details })
   }
 
   return (
@@ -47,49 +52,55 @@ export default function EditRequest() {
           </CardContent>
         </Card>
         {/* Edit Request Form */}
-        <Card>
-          <CardTitle>修改資料</CardTitle>
-          <CardContent className="space-y-3xl">
-            <form className="space-y-3xl" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
+          <Card>
+            <CardTitle>修改資料</CardTitle>
+            <CardContent className="space-y-3xl">
               <div className="space-y-m">
-                <h6 className="flex items-center gap-1">
+                <label
+                  htmlFor="reason"
+                  className="typography-h6 flex items-center gap-1"
+                >
                   <TextIcon className="text-text-tertiary" />
                   修改原因
-                </h6>
+                </label>
                 <textarea
-                  className={textareaStyle}
-                  name=""
-                  id=""
+                  className={cn(textareaStyle, 'h-12')}
+                  id="reason"
+                  name="reason"
                   placeholder="例如：文字需要調整"
                 />
               </div>
               <div className="space-y-m">
-                <h6 className="flex items-center gap-1">
+                <label
+                  htmlFor="details"
+                  className="typography-h6 flex items-center gap-1"
+                >
                   <TextFormatIcon className="text-text-tertiary" />
                   修改詳情
-                </h6>
+                </label>
                 <textarea
-                  className={textareaStyle}
-                  name=""
-                  id=""
+                  className={cn(textareaStyle, 'h-27')}
+                  id="details"
+                  name="details"
                   placeholder="請詳細描述您希望調整的地方及期望結果"
                 />
               </div>
-            </form>
-            <Instructions
-              title="重要提醒"
-              icon={<TriangleExclamationIcon />}
-              wordings={INSTRUCTIONS_INFO}
-              isDot
-            />
-          </CardContent>
-          <CardFooter className="justify-end gap-2">
-            <Button variant="outline" intent="secondary">
-              取消
-            </Button>
-            <Button>送出修改請求</Button>
-          </CardFooter>
-        </Card>
+              <Instructions
+                title="重要提醒"
+                icon={<TriangleExclamationIcon />}
+                wordings={INSTRUCTIONS_INFO}
+                isDot
+              />
+            </CardContent>
+            <CardFooter className="justify-end gap-2">
+              <Button variant="outline" intent="secondary">
+                取消
+              </Button>
+              <Button type="submit">送出修改請求</Button>
+            </CardFooter>
+          </Card>
+        </form>
       </PageMain>
     </>
   )
