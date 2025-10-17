@@ -87,7 +87,7 @@ type CardTitleProps = ComponentPropsWithoutRef<'h4'> & {
 
 function CardTitle({ asChild, className, ...props }: CardTitleProps) {
   const { isNote } = useCardVariant()
-  const Comp = (isNote ? 'h6' : undefined) ?? (asChild ? Slot : 'h4')
+  const Comp = (isNote ? 'h6' : undefined) ?? (asChild ? Slot : 'h5')
 
   return (
     <Comp
